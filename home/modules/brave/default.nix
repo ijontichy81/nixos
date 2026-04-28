@@ -2,7 +2,7 @@
   home.packages = [
     (pkgs.writeScriptBin "brave" ''
       #!${lib.getExe pkgs.bash}
-      export LD_LIBRARY_PATH="${pkgs.wayland}/lib:${pkgs.mesa.lib}/lib:${pkgs.libGL}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.wayland}/lib:${pkgs.mesa.drivers}/lib:${pkgs.libGL}/lib:$LD_LIBRARY_PATH"
       exec -a "$0" "${pkgs.brave}/bin/.brave-wrapped" --ozone-platform=wayland "$@"
     '')
     pkgs.wayland
