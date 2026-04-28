@@ -1,4 +1,8 @@
 { config, pkgs, lib, ... }: {
+  home.sessionVariables = {
+    BRAVE_USE_WAYLAND = "1";
+  };
+
   home.packages = [
     pkgs.brave
     pkgs.wayland
