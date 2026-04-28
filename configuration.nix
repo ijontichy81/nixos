@@ -108,7 +108,10 @@ imports = [
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Wayland for chromium-based apps (Brave, VSCode, Discord, etc.)
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    WAYLAND_DISPLAY = "wayland-1";
+  };
 
   # Firmware
   hardware.enableRedistributableFirmware = true;
