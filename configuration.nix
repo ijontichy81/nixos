@@ -135,6 +135,8 @@ imports = [
     jq
     inotify-tools
     curl
+    python313
+    python313Packages.adblock
     
   ];
 

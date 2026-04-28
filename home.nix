@@ -69,6 +69,7 @@
     curl
     udiskie
     github-cli
+    brave
   ];
 
   programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
