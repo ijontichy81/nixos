@@ -1,9 +1,10 @@
 { config, pkgs, variables, ... }:
 
 {
-  imports = [
+imports = [
     ./hardware-configuration.nix
-./modules/amdgpu
+    ./modules/amdgpu
+    #./modules/nvidia		
     ./modules/zsh
   ];
 
