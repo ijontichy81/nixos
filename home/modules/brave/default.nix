@@ -1,9 +1,6 @@
 { config, pkgs, ... }: {
   programs.brave = {
     enable = true;
-    settings = {
-      ozone-platform = "wayland";
-    };
     extensions = [
       # Add your extension IDs here, for example:
       # "cjpalhdlnbpafiamejdnhcphjbkeiagm"  # uBlock Origin
@@ -13,6 +10,7 @@
 
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
 
   xdg.mimeApps.defaultApplications = {
