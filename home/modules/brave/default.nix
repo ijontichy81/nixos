@@ -1,15 +1,8 @@
 { config, pkgs, lib, ... }: {
   home.packages = [
-    (pkgs.writeScriptBin "brave" ''
-      #!${lib.getExe pkgs.bash}
-      export LD_LIBRARY_PATH="${pkgs.wayland}/lib:${pkgs.mesa}/lib:${pkgs.libGL}/lib:${pkgs.gtk3}/lib:$LD_LIBRARY_PATH"
-      export GSETTINGS_SCHEMA_DIR="${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas:${pkgs.gtk3}/share/gsettings-schemas"
-      export XDG_DATA_DIRS="${pkgs.gsettings-desktop-schemas}/share:${pkgs.gtk3}/share:$XDG_DATA_DIRS"
-      exec -a "$0" "${pkgs.brave}/bin/.brave-wrapped" --ozone-platform=wayland "$@"
-    '')
+    pkgs.brave
     pkgs.wayland
     pkgs.mesa
-    pkgs.libGL
     pkgs.gsettings-desktop-schemas
     pkgs.gtk3
   ];
