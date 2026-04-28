@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }: {
   home.sessionVariables = {
-    BRAVE_USE_WAYLAND = "1";
+    XDG_CURRENT_DESKTOP = "wayland";
+    OZONE_PLATFORM = "wayland";
   };
 
   home.packages = [
