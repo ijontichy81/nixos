@@ -1,17 +1,12 @@
-{ config, pkgs, ... }: {
-  programs.brave = {
-    enable = true;
-    extensions = [
-      # Add your extension IDs here, for example:
-      # "cjpalhdlnbpafiamejdnhcphjbkeiagm"  # uBlock Origin
-      # "nngceckbapebfimnlniiiahkandfilfh"  # Privacy Badger
-    ];
-  };
+{ config, pkgs, lib, ... }: {
+  home.packages = [
+    (pkgs.writeScriptBin "brave" ''
+      #!${lib.getExe pkgs.bash}
+      exec -a "$0" "${pkgs.brave}/bin/.brave-wrapped" --ozone-platform=wayland "$@"
+    '')
+  ];
 
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-  };
+  programs.brave.enable = true;
 
   xdg.mimeApps.defaultApplications = {
     "text/html" = "brave-browser.desktop";
