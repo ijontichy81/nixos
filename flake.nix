@@ -48,7 +48,14 @@
           ];
         }
         ({ pkgs, ... }: {
-          nixpkgs.overlays = [ niri.overlays.niri ];
+          nixpkgs.overlays = [
+    niri.overlays.niri
+    (self: super: {
+      brave = super.brave.override {
+        commandLineArgs = [ "--ozone-platform=wayland" ];
+      };
+    })
+  ];
         })
         ({ pkgs, ... }: {
           environment.systemPackages = [ niri.packages.x86_64-linux.niri-unstable (pkgs.callPackage ./catppuccin-mocha-green.nix {}) ];

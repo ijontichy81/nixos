@@ -143,9 +143,7 @@ imports = [
     curl
     python313
     python313Packages.adblock
-    (brave.override {
-      commandLineArgs = [ "--ozone-platform=wayland" ];
-    })
+    brave
   ];
 
   programs.dconf.enable = true;
