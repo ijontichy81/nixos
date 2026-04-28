@@ -8,6 +8,10 @@
     ];
   };
 
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
   xdg.mimeApps.defaultApplications = {
     "text/html" = "brave-browser.desktop";
     "x-scheme-handler/http" = "brave-browser.desktop";
