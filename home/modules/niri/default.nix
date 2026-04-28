@@ -155,7 +155,7 @@ layout {
       Mod+R { switch-preset-column-width; }
       Mod+Tab { toggle-overview; }
 
-      Mod+B { spawn "firefox"; }
+      Mod+B { spawn "brave"; }
       Mod+T { spawn "ghostty"; }
       Mod+E { spawn "nautilus"; }
       Mod+M { spawn "spotify"; }
