@@ -3,9 +3,9 @@
     enable = true;
     package = pkgs.brave;
     extensions = [
-      "ponfpcnoihfmfllpaingbgckeeldkhle;https://clients2.google.com/service/update2/crx"
-      "gebbhagfogifgggkldgodflihgfeippi;https://clients2.google.com/service/update2/crx"
-      "dbepggeogbaibhgnhhndojpepiihcmeb;https://clients2.google.com/service/update2/crx"
+      "ponfpcnoihfmfllpaingbgckeeldkhle"
+      "gebbhagfogifgggkldgodflihgfeippi"
+      "dbepggeogbaibhgnhhndojpepiihcmeb"
     ];
   };
 
