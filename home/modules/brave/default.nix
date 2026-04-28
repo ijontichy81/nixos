@@ -1,6 +1,9 @@
 { config, pkgs, ... }: {
   programs.brave = {
     enable = true;
+    settings = {
+      ozone-platform = "wayland";
+    };
     extensions = [
       # Add your extension IDs here, for example:
       # "cjpalhdlnbpafiamejdnhcphjbkeiagm"  # uBlock Origin
