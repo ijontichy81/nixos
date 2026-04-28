@@ -1,15 +1,8 @@
 { config, pkgs, lib, ... }: {
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+  programs.chromium = {
+    enable = true;
+    package = pkgs.brave;
   };
-
-  home.packages = [
-    pkgs.brave
-    pkgs.mesa
-    pkgs.gsettings-desktop-schemas
-    pkgs.gtk3
-  ];
 
   xdg.mimeApps.defaultApplications = {
     "text/html" = "brave.desktop";
