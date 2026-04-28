@@ -8,6 +8,7 @@
     pkgs.wayland
     pkgs.mesa
     pkgs.libGL
+    pkgs.gsettings-desktop-schemas
   ];
 
   xdg.mimeApps.defaultApplications = {
