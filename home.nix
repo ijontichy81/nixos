@@ -33,9 +33,10 @@
     XCURSOR_SIZE = "32";
     XCURSOR_THEME = "catppuccin-mocha-green-cursors";
     EDITOR = "nvim";
+    DEFAULT_BROWSER = "${pkgs.brave}/bin/brave";
   };
 
- home.packages = with pkgs; [
+  home.packages = with pkgs; [
     zathura
     imv
     mpv
@@ -44,6 +45,7 @@
     ghostty
     quickshell
     wl-clipboard
+    xdg-utils
     libqalculate
     imagemagick
     glow
