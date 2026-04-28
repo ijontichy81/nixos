@@ -6,8 +6,6 @@
     '')
   ];
 
-  programs.brave.enable = true;
-
   xdg.mimeApps.defaultApplications = {
     "text/html" = "brave-browser.desktop";
     "x-scheme-handler/http" = "brave-browser.desktop";
