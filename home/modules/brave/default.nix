@@ -5,7 +5,6 @@
       export NIXOS_OZONE_WL=1
       exec -a "$0" "${pkgs.brave}/bin/.brave-wrapped" --ozone-platform=wayland "$@"
     '')
-    pkgs.brave
     pkgs.wayland
     pkgs.mesa
     pkgs.gsettings-desktop-schemas
