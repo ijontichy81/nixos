@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }: {
   home.sessionVariables = {
-    XDG_CURRENT_DESKTOP = "wayland";
-    OZONE_PLATFORM = "wayland";
+    NIXOS_OZONE_WL = "1";
   };
 
   home.packages = [
