@@ -7,9 +7,9 @@
 
   xdg.configFile."niri/config.kdl".text = ''
     prefer-no-csd
-    workspace "shell"
-    workspace "firefox"
-    workspace "spotify"
+    workspace "🐚"
+    workspace "🌐"
+    workspace "🎵"
     environment {
       GTK_ICON_THEME "Papirus-Dark"
       XCURSOR_THEME "catppuccin-mocha-green-cursors"
@@ -58,7 +58,7 @@ layout {
 
     window-rule {
       match app-id="firefox"
-      open-on-workspace "firefox"
+      open-on-workspace "🌐"
       match is-active=true
       opacity 0.98
     }
@@ -68,8 +68,20 @@ layout {
       opacity 0.90
     }
     window-rule {
+      match app-id="brave"
+      open-on-workspace "🌐"
+      match is-active=true
+      opacity 0.98
+    }
+    window-rule {
+      match app-id="brave"
+      match is-active=false
+      opacity 0.90
+    }
+
+    window-rule {
       match app-id="spotify"
-      open-on-workspace "spotify"
+      open-on-workspace "🎵"
       match is-active=true
       opacity 0.90
     }
