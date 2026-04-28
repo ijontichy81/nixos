@@ -11,7 +11,7 @@
     ./home/modules/spicetify
     ./home/modules/opencode
     ./home/modules/firefox
-		#./home/modules/brave
+    ./home/modules/brave
     ./home/modules/mygtk
     ./home/modules/fish
     ./home/modules/udiskie
