@@ -1,4 +1,9 @@
 { config, pkgs, lib, ... }: {
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    WAYLAND_DISPLAY = "wayland-1";
+  };
+
   programs.chromium = {
     enable = true;
     package = pkgs.brave;
