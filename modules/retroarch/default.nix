@@ -1,13 +1,11 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    (retroarch.override {
-      cores = with libretro; [
-        genesis-plus-gx
-        snes9x
-        beetle-psx-hw
-      ];
-    })
+  environment.systemPackages = [
+    (pkgs.retroarch.withCores (libretro: [
+      libretro.genesis-plus-gx
+      libretro.snes9x
+      libretro.beetle-psx-hw
+    ]))
   ];
 }
