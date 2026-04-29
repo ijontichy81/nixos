@@ -106,7 +106,6 @@
   # Wayland for chromium-based apps (Brave, VSCode, Discord, etc.)
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    WAYLAND_DISPLAY = "wayland-1";
   };
 
   # Firmware
@@ -154,6 +153,18 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd niri";
+        user = "marco";
+      };
+    };
+  };
+
+  environment.pathsToLink = [ "/bin" ];
 
   xdg.portal = {
     enable = true;
