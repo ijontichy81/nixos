@@ -1,10 +1,7 @@
 { config, pkgs, variables, ... }:
 
 {
-imports = [
-    ./hardware-configuration.nix
-    ./modules/amdgpu
-    #./modules/nvidia		
+  imports = [
     ./modules/zsh
   ];
 
@@ -32,7 +29,6 @@ imports = [
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -124,6 +120,7 @@ imports = [
   services.gvfs.enable = true;
 
   environment.systemPackages = with pkgs; [
+    pciutils
     uwsm
     clinfo
     lact
@@ -144,6 +141,7 @@ imports = [
     python313
     python313Packages.adblock
     brave
+    git
   ];
 
   programs.dconf.enable = true;

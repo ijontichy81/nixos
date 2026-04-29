@@ -28,11 +28,11 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, nixvim, niri, noctalia, nix-colors, vicinae, ... }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nvidia = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ./configuration.nix
+        ./hosts/nvidia/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -49,13 +49,51 @@
         }
         ({ pkgs, ... }: {
           nixpkgs.overlays = [
-    niri.overlays.niri
-    (self: super: {
-      brave = super.brave.override {
-        commandLineArgs = [ "--ozone-platform=wayland" ];
-      };
-    })
-  ];
+            niri.overlays.niri
+            (self: super: {
+              brave = super.brave.override {
+                commandLineArgs = [ "--ozone-platform=wayland" ];
+              };
+            })
+          ];
+        })
+        ({ pkgs, ... }: {
+          environment.systemPackages = [ niri.packages.x86_64-linux.niri-unstable (pkgs.callPackage ./catppuccin-mocha-green.nix {}) ];
+        })
+        ({ pkgs, ... }: {
+          home-manager.users.marco.xdg.dataFile."icons/catppuccin-mocha-green-cursors".source = "${pkgs.callPackage ./catppuccin-mocha-green.nix {}}/share/icons/catppuccin-mocha-green-cursors";
+        })
+      ];
+    };
+
+    nixosConfigurations.amd = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./hosts/amd/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.marco= import ./home.nix;
+          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.sharedModules = [
+            nixvim.homeModules.nixvim
+            niri.homeModules.niri
+            noctalia.homeModules.default
+            nix-colors.homeManagerModules.default
+	    vicinae.homeManagerModules.default
+          ];
+        }
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [
+            niri.overlays.niri
+            (self: super: {
+              brave = super.brave.override {
+                commandLineArgs = [ "--ozone-platform=wayland" ];
+              };
+            })
+          ];
         })
         ({ pkgs, ... }: {
           environment.systemPackages = [ niri.packages.x86_64-linux.niri-unstable (pkgs.callPackage ./catppuccin-mocha-green.nix {}) ];
