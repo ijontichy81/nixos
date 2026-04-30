@@ -4,10 +4,7 @@
   inputs,
   ...
 }: let
-  wallpaper = pkgs.runCommand "purple1.png" {} ''
-    cp /home/marco/Pictures/papes/purple1.png $out
-    chmod 644 $out
-  '';
+  wallpaper = "/home/marco/Pictures/papes/purple1.png";
   text = "cdd6f4";
   surface = "313244";
   sddm-astronaut = pkgs.sddm-astronaut.override {
