@@ -5,6 +5,7 @@
     ../../common.nix
     ./hardware-configuration.nix
     ../../modules/nvidia
+    ../../modules/quickshell
   ];
 
   networking.hostName = "nvidia";
