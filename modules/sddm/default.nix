@@ -4,7 +4,7 @@
   inputs,
   ...
 }: let
-  wallpaper = /home/marco/Downloads/tweetney.webm;
+  wallpaper = ../../assets/tweetney.webm;
   text = "cdd6f4";
   surface = "313244";
   sddm-astronaut = pkgs.sddm-astronaut.override {
