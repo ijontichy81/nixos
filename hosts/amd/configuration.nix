@@ -8,12 +8,10 @@
     ../../modules/retroarch
     ../../modules/steam
     ../../modules/quickshell
-    ../../modules/sddm
+    ../../modules/sddm-amd
   ];
 
   networking.hostName = "amd";
-
-  sddm.wallpaper = ../../assets/tweetney.gif;
 
   services.greetd.enable = lib.mkForce false;
 }
