@@ -11,7 +11,6 @@
     embeddedTheme = "pixel_sakura";
     themeConfig = {
       FormPosition = "left";
-      Blur = "4.0";
       Background = "${toString wallpaper}";
       HourFormat = "h:mm AP";
       HeaderTextColor = "#${text}";
