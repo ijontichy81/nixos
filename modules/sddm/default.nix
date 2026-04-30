@@ -4,7 +4,7 @@
   inputs,
   ...
 }: let
-  wallpaper = "/home/marco/Pictures/papes/purple1.png";
+  wallpaper = ../../assets/purple1.png;
   text = "cdd6f4";
   surface = "313244";
   sddm-astronaut = pkgs.sddm-astronaut.override {
@@ -12,7 +12,7 @@
     themeConfig = {
       FormPosition = "left";
       Blur = "4.0";
-      Background = wallpaper;
+      Background = "${toString wallpaper}";
       HourFormat = "h:mm AP";
       HeaderTextColor = "#${text}";
       DateTextColor = "#${text}";
