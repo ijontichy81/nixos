@@ -12,7 +12,7 @@
     themeConfig = {
       FormPosition = "left";
       Blur = "4.0";
-      Background = "${wallpaper}";
+      Background = wallpaper;
       HourFormat = "h:mm AP";
       HeaderTextColor = "#${text}";
       DateTextColor = "#${text}";
@@ -37,15 +37,8 @@ in {
       package = pkgs.kdePackages.sddm;
       extraPackages = [sddm-astronaut];
       enable = true;
-      wayland.enable = true;
       theme = "sddm-astronaut-theme";
       settings = {
-        General = {
-          GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
-        };
-        Wayland = {
-          CompositorCommand = "${pkgs.kdePackages.kwin}/bin/kwin_wayland --drm --no-lockscreen --no-global-shortcuts --locale1";
-        };
         X11 = {
           XkbLayout = "us";
           XkbVariant = "";
@@ -57,6 +50,8 @@ in {
       inputs.niri.packages.x86_64-linux.niri-unstable
     ];
   };
+
+  services.xserver.enable = true;
 
   services.libinput.enable = true;
 
