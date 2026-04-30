@@ -2,9 +2,10 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }: let
-  wallpaper = ../../assets/purple1.png;
+  wallpaper = config.services.sddm.wallpaper or ../../assets/purple1.png;
   text = "cdd6f4";
   surface = "313244";
   sddm-astronaut = pkgs.sddm-astronaut.override {
@@ -62,5 +63,11 @@ in {
 
   systemd.services.display-manager.environment = {
     XKB_DEFAULT_LAYOUT = "us";
+  };
+
+  services.sddm.wallpaper = lib.mkOption {
+    type = lib.types.path;
+    default = ../../assets/purple1.png;
+    description = "Path to SDDM wallpaper";
   };
 }
