@@ -13,7 +13,7 @@
 
   networking.hostName = "amd";
 
-  services.sddm.wallpaper = ../../assets/tweetney.gif;
+  sddm.wallpaper = ../../assets/tweetney.gif;
 
   services.greetd.enable = lib.mkForce false;
 }

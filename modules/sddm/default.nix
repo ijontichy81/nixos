@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  wallpaper = config.services.sddm.wallpaper or ../../assets/purple1.png;
+  wallpaper = config.sddm.wallpaper or ../../assets/purple1.png;
   text = "cdd6f4";
   surface = "313244";
   sddm-astronaut = pkgs.sddm-astronaut.override {
@@ -65,7 +65,7 @@ in {
     XKB_DEFAULT_LAYOUT = "us";
   };
 
-  services.sddm.wallpaper = lib.mkOption {
+  sddm.wallpaper = lib.mkOption {
     type = lib.types.path;
     default = ../../assets/purple1.png;
     description = "Path to SDDM wallpaper";
