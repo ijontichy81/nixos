@@ -8,7 +8,7 @@
     ../../modules/retroarch
     ../../modules/steam
     ../../modules/quickshell
-    ../../modules/sddm-amd
+    ../../modules/sddm
   ];
 
   networking.hostName = "amd";
