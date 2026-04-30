@@ -1,11 +1,11 @@
 {
   pkgs,
-  config,
   lib,
   ...
 }: let
-  palette = config.colorScheme.palette;
-  wallpaper = /home/marco/Pictures/papes/purple1.png;
+  wallpaper = "/home/marco/Pictures/papes/purple1.png";
+  text = "cdd6f4";
+  surface = "313244";
   sddm-astronaut = pkgs.sddm-astronaut.override {
     embeddedTheme = "pixel_sakura";
     themeConfig = {
@@ -13,21 +13,21 @@
       Blur = "4.0";
       Background = wallpaper;
       HourFormat = "h:mm AP";
-      HeaderTextColor = "#${palette.base05}";
-      DateTextColor = "#${palette.base05}";
-      TimeTextColor = "#${palette.base05}";
-      LoginFieldTextColor = "#${palette.base05}";
-      PasswordFieldTextColor = "#${palette.base05}";
-      UserIconColor = "#${palette.base05}";
-      PasswordIconColor = "#${palette.base05}";
-      WarningColor = "#${palette.base05}";
-      LoginButtonBackgroundColor = "#${palette.base01}";
-      SystemButtonsIconsColor = "#${palette.base05}";
-      SessionButtonTextColor = "#${palette.base05}";
-      VirtualKeyboardButtonTextColor = "#${palette.base05}";
-      DropdownBackgroundColor = "#${palette.base01}";
-      HighlightBackgroundColor = "#${palette.base05}";
-      FormBackgroundColor = "#${palette.base01}";
+      HeaderTextColor = "#${text}";
+      DateTextColor = "#${text}";
+      TimeTextColor = "#${text}";
+      LoginFieldTextColor = "#${text}";
+      PasswordFieldTextColor = "#${text}";
+      UserIconColor = "#${text}";
+      PasswordIconColor = "#${text}";
+      WarningColor = "#${text}";
+      LoginButtonBackgroundColor = "#${surface}";
+      SystemButtonsIconsColor = "#${text}";
+      SessionButtonTextColor = "#${text}";
+      VirtualKeyboardButtonTextColor = "#${text}";
+      DropdownBackgroundColor = "#${surface}";
+      HighlightBackgroundColor = "#${text}";
+      FormBackgroundColor = "#${surface}";
     };
   };
 in {

@@ -13,5 +13,5 @@
 
   networking.hostName = "amd";
 
-  services.greetd.enable = false;
+  services.greetd.enable = lib.mkForce false;
 }

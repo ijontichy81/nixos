@@ -72,10 +72,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/amd/configuration.nix
-        nix-colors.nixosModules.default
-        {
-          colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
-        }
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
