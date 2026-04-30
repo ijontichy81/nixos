@@ -1,24 +1,7 @@
-{ config, pkgs, ... }:
+{ osConfig, ... }:
 
 {
-  programs.ghostty = {
-    enable = true;
-
-    settings = {
-      theme = "noctalia";
-      window-padding-x = "8,4";
-      window-padding-y = "12,4";
-      font-family = "FiraCode Nerd Font";
-      font-size = 12;
-      confirm-close-surface = true;
-
-      keybind = [
-        "super+i=inspector:toggle"
-        "super+r=reload_config"
-      ];
-
-      quick-terminal-animation-duration = 0.08;
-      background-blur = true;
-    };
-  };
+  imports = [
+    (if osConfig.networking.hostName == "amd" then ./amd.nix else ./nvidia.nix)
+  ];
 }

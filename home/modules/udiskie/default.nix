@@ -1,9 +1,7 @@
-{ ... }:
+{ osConfig, ... }:
 
 {
-  services.udiskie = {
-    enable = true;
-    notify = true;
-    automount = true;
-  };
+  imports = [
+    (if osConfig.networking.hostName == "amd" then ./amd.nix else ./nvidia.nix)
+  ];
 }

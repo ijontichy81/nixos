@@ -1,10 +1,7 @@
-{ config, ... }:
+{ osConfig, ... }:
 
 {
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      ls = "eza -la --icons --git";
-    };
-  };
+  imports = [
+    (if osConfig.networking.hostName == "amd" then ./amd.nix else ./nvidia.nix)
+  ];
 }
