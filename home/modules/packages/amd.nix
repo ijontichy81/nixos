@@ -13,6 +13,7 @@
     xdg-utils
     libqalculate
     imagemagick
+    ffmpeg
     glow
     bluez
     lxappearance
