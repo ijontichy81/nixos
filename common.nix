@@ -141,7 +141,7 @@
     python313Packages.adblock
     brave
     git
-    cifsutils
+    cifs-Utils
   ];
 
   programs.dconf.enable = true;
