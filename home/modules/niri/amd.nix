@@ -178,5 +178,6 @@
     spawn-at-startup "vicinae" "server"
     spawn-at-startup "vicinae" "theme" "set" "catppuccin-mocha"
     spawn-at-startup "ghostty"
+    spawn-at-startup "xwayland-satellite"
   '';
 }
