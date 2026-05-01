@@ -41,7 +41,7 @@
           home-manager.users.marco= import ./home.nix;
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.sharedModules = [
-nixvim.homeModules.default
+            nixvim.homeModules.default
             niri.homeModules.niri
             noctalia.homeModules.default
             nix-colors.homeManagerModules.default
@@ -61,7 +61,6 @@ nixvim.homeModules.default
         ({ pkgs, ... }: {
           environment.systemPackages = [
             niri.packages.x86_64-linux.niri-unstable
-            niri.packages.x86_64-linux.xwayland-satellite-unstable
             (pkgs.callPackage ./catppuccin-mocha-green.nix {})
           ];
         })
@@ -104,6 +103,7 @@ nixvim.homeModules.default
         ({ pkgs, ... }: {
           environment.systemPackages = [
             niri.packages.x86_64-linux.niri-unstable
+            niri.packages.x86_64-linux.xwayland-satellite-unstable
             (pkgs.callPackage ./catppuccin-mocha-green.nix {})
           ];
         })
