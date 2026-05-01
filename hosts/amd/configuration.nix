@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -15,4 +15,6 @@
   networking.hostName = "amd";
 
   services.greetd.enable = lib.mkForce false;
+
+  environment.systemPackages = [ pkgs.protonup-qt ];
 }
