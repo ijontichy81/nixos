@@ -41,11 +41,11 @@
           home-manager.users.marco= import ./home.nix;
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.sharedModules = [
-            nixvim.homeModules.nixvim
+            nixvim.homeModules.niri
             niri.homeModules.niri
             noctalia.homeModules.default
             nix-colors.homeManagerModules.default
-	    vicinae.homeManagerModules.default
+            vicinae.homeManagerModules.default
           ];
         }
         ({ pkgs, ... }: {
@@ -59,7 +59,10 @@
           ];
         })
         ({ pkgs, ... }: {
-          environment.systemPackages = [ niri.packages.x86_64-linux.niri-unstable (pkgs.callPackage ./catppuccin-mocha-green.nix {}) ];
+          environment.systemPackages = [
+            niri.packages.x86_64-linux.niri-unstable
+            (pkgs.callPackage ./catppuccin-mocha-green.nix {})
+          ];
         })
         ({ pkgs, ... }: {
           home-manager.users.marco.xdg.dataFile."icons/catppuccin-mocha-green-cursors".source = "${pkgs.callPackage ./catppuccin-mocha-green.nix {}}/share/icons/catppuccin-mocha-green-cursors";
@@ -80,11 +83,11 @@
           home-manager.users.marco= import ./home.nix;
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.sharedModules = [
-            nixvim.homeModules.nixvim
+            nixvim.homeModules.niri
             niri.homeModules.niri
             noctalia.homeModules.default
             nix-colors.homeManagerModules.default
-	    vicinae.homeManagerModules.default
+            vicinae.homeManagerModules.default
           ];
         }
         ({ pkgs, ... }: {
@@ -98,7 +101,10 @@
           ];
         })
         ({ pkgs, ... }: {
-          environment.systemPackages = [ niri.packages.x86_64-linux.niri-unstable (pkgs.callPackage ./catppuccin-mocha-green.nix {}) ];
+          environment.systemPackages = [
+            niri.packages.x86_64-linux.niri-unstable
+            (pkgs.callPackage ./catppuccin-mocha-green.nix {})
+          ];
         })
         ({ pkgs, ... }: {
           home-manager.users.marco.xdg.dataFile."icons/catppuccin-mocha-green-cursors".source = "${pkgs.callPackage ./catppuccin-mocha-green.nix {}}/share/icons/catppuccin-mocha-green-cursors";
