@@ -1,11 +1,9 @@
-{pkgs, ...}: {
+{ pkgs, lib, ... }: {
   programs = {
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = false;
-      gamescopeSession.enable = true;
-      extraCompatPackages = [pkgs.proton-ge-bin];
+      dedicatedServer.openFirewall = true;
     };
 
     gamescope = {
@@ -17,4 +15,11 @@
       ];
     };
   };
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-unwrapped"
+    "steam-run"
+  ];
 }

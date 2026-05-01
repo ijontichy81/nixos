@@ -97,8 +97,12 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-unwrapped"
+    "steam-run"
+  ];
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
