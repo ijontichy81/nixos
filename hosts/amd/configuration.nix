@@ -9,6 +9,7 @@
     ../../modules/steam
     ../../modules/quickshell
     ../../modules/sddm
+    ../../modules/heroic
   ];
 
   networking.hostName = "amd";
