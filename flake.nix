@@ -61,6 +61,7 @@
         ({ pkgs, ... }: {
           environment.systemPackages = [
             niri.packages.x86_64-linux.niri-unstable
+            pkgs.yt-dlp
             (pkgs.callPackage ./catppuccin-mocha-green.nix {})
           ];
         })
@@ -104,6 +105,7 @@
           environment.systemPackages = [
             niri.packages.x86_64-linux.niri-unstable
             niri.packages.x86_64-linux.xwayland-satellite-unstable
+            pkgs.yt-dlp
             (pkgs.callPackage ./catppuccin-mocha-green.nix {})
           ];
         })
