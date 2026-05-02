@@ -18,5 +18,5 @@
 
   environment.systemPackages = [ pkgs.protonup-qt ];
 
-  services.bluetooth.enable = true;
+  hardware.bluetooth.enable = true;
 }
