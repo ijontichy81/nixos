@@ -17,4 +17,6 @@
   services.greetd.enable = lib.mkForce false;
 
   environment.systemPackages = [ pkgs.protonup-qt ];
+
+  services.bluetooth.enable = true;
 }
