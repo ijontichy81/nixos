@@ -19,7 +19,10 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-colors.url = "github:misterio77/nix-colors";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,11 +30,21 @@
     vicinae.url = "github:vicinaehq/vicinae";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixvim, niri, noctalia, nix-colors, vicinae, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, nixvim, niri, noctalia, vicinae, stylix, ... }: {
     nixosConfigurations.nvidia = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        stylix.nixosModules.stylix
+        ({ pkgs, ... }: {
+          stylix = {
+            enable = true;
+            autoEnable = false;
+            base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+            polarity = "dark";
+          };
+          environment.systemPackages = [ pkgs.base16-schemes ];
+        })
         ./hosts/nvidia/configuration.nix
         home-manager.nixosModules.home-manager
         {
@@ -44,7 +57,6 @@
             nixvim.homeModules.default
             niri.homeModules.niri
             noctalia.homeModules.default
-            nix-colors.homeManagerModules.default
             vicinae.homeManagerModules.default
           ];
         }
@@ -75,6 +87,16 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        stylix.nixosModules.stylix
+        ({ pkgs, ... }: {
+          stylix = {
+            enable = true;
+            autoEnable = false;
+            base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+            polarity = "dark";
+          };
+          environment.systemPackages = [ pkgs.base16-schemes ];
+        })
         ./hosts/amd/configuration.nix
         home-manager.nixosModules.home-manager
         {
@@ -87,7 +109,6 @@
             nixvim.homeModules.default
             niri.homeModules.niri
             noctalia.homeModules.default
-            nix-colors.homeManagerModules.default
             vicinae.homeManagerModules.default
           ];
         }
