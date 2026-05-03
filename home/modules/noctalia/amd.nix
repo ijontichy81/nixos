@@ -49,12 +49,8 @@
               }
               {
                 id = "MediaMini";
-              }
-            ];
-            center = [
-              {
-                id = "Workspace";
-              }
+}
+}
             ];
             right = [
               {
