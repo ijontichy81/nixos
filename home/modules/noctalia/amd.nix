@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }:
 {
-  home-manager.users.drfoobar = {
+  home-manager.users.marco= {
     imports = [
       inputs.noctalia.homeModules.default
     ];
@@ -22,7 +22,7 @@
           contentPadding = 2;
           fontScale = 1;
           enableExclusionZoneInset = true;
-          backgroundOpacity = 0.93;
+          backgroundOpacity = 0.73;
           useSeparateOpacity = false;
           marginVertical = 4;
           marginHorizontal = 4;
