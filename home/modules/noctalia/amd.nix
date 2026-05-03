@@ -1,13 +1,12 @@
 { pkgs, inputs, ... }:
 {
-  home-manager.users.marco= {
-    imports = [
-      inputs.noctalia.homeModules.default
-    ];
+  imports = [
+    inputs.noctalia.homeModules.default
+  ];
 
-    programs.noctalia-shell = {
-      enable = true;
-      settings = {
+  programs.noctalia-shell = {
+    enable = true;
+    settings = {
         settingsVersion = 0;
         bar = {
           barType = "simple";
@@ -60,6 +59,9 @@
             right = [
               {
                 id = "Tray";
+              }
+              {
+                id = "Bluetooth";
               }
               {
                 id = "NotificationHistory";
