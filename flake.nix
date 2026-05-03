@@ -42,6 +42,9 @@
             autoEnable = false;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
             polarity = "dark";
+            targets = {
+              qt.enable = true;
+            };
           };
           environment.systemPackages = [ pkgs.base16-schemes ];
         })
@@ -94,6 +97,9 @@
             autoEnable = false;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
             polarity = "dark";
+            targets = {
+              qt.enable = true;
+            };
           };
           environment.systemPackages = [ pkgs.base16-schemes ];
         })
