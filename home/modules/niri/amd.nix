@@ -7,7 +7,7 @@
 
   xdg.configFile."niri/config.kdl".text = ''
     prefer-no-csd
-    workspace "🐚"
+    workspace "👻"
     workspace "🌐"
     workspace "🎵"
     environment {
