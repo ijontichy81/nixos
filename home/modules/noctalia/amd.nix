@@ -49,8 +49,7 @@
               }
               {
                 id = "MediaMini";
-}
-}
+              }
             ];
             right = [
               {
