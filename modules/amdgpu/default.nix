@@ -9,6 +9,11 @@
 
   nixpkgs.config.rocmSupport = true;
 
+  environment.systemPackages = with pkgs; [
+    lact
+    clinfo
+  ];
+
   systemd.tmpfiles.rules =
     let
       rocmEnv = pkgs.symlinkJoin {

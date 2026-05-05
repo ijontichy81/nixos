@@ -121,8 +121,6 @@
   environment.systemPackages = with pkgs; [
     pciutils
     uwsm
-    clinfo
-    lact
     vim
     wget
     wayland
