@@ -34,5 +34,6 @@
     curl
     udiskie
     github-cli
+    winboat
   ];
 }

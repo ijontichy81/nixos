@@ -36,5 +36,6 @@
     udiskie
     github-cli
     cava
+    winboat
   ];
 }

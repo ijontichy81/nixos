@@ -8,7 +8,8 @@
     ../../modules/quickshell
   ];
 
-  age.identityPaths = [ /home/marco/.config/agenix/age-key ];
+  services.openssh.enable = true;
+
   age.secrets.smb-credentials.file = ../../secrets/smb-credentials.age;
 
   networking.hostName = "nvidia";
@@ -22,7 +23,7 @@
   services.printing.enable = true;
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     publish.enable = true;
   };
 

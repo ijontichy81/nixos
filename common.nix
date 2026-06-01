@@ -78,7 +78,7 @@
     isNormalUser = true;
     description = "marco";
     group = "vip";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "docker" ];
     shell = pkgs.zsh;
     homeMode = "750";
     packages = with pkgs; [
@@ -89,10 +89,10 @@
   systemd.services.fix-home-permissions = {
     serviceConfig.Type = "oneshot";
     script = ''
-      # Fix group ownership
-      chgrp -R vip /home/marco
+      # Fix group ownership (skip mount points)
+      find /home/marco -mount \( -not -user root \) -exec chgrp vip {} + 2>/dev/null || true
       # Ensure directories are executable
-      find /home/marco -type d -exec chmod 750 {} \;
+      find /home/marco -mount -type d -exec chmod 750 {} + 2>/dev/null || true
     '';
     wantedBy = [ "multi-user.target" ];
   };
@@ -113,6 +113,12 @@
 
   # SSD TRIM
   services.fstrim.enable = true;
+
+  virtualisation.docker.enable = true;
+
+  # KVM virtualization for winboat
+  virtualisation.libvirtd.enable = true;
+  boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
 
   services.udisks2.enable = true;
 
