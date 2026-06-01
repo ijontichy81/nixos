@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -19,4 +19,13 @@
   username=marco.benther
   password=verwaltung
 '';
+
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    publish.enable = true;
+  };
+
+  environment.systemPackages = [ pkgs.system-config-printer ];
 }

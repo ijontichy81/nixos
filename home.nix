@@ -22,6 +22,7 @@
   home.username = "marco";
   home.homeDirectory = "/home/marco";
   home.stateVersion = "26.05";
+  home.enableNixpkgsReleaseCheck = false;
 
   mygtk = {
     enable = true;

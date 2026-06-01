@@ -9,7 +9,6 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -39,6 +38,7 @@
         ({ pkgs, ... }: {
           stylix = {
             enable = true;
+            enableReleaseChecks = false;
             autoEnable = false;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
             polarity = "dark";
@@ -94,6 +94,7 @@
         ({ pkgs, ... }: {
           stylix = {
             enable = true;
+            enableReleaseChecks = false;
             autoEnable = false;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
             polarity = "dark";
