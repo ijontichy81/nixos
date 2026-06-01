@@ -140,6 +140,7 @@
     brave
     git
     cifs-utils
+    usbutils
   ];
 
   programs.dconf.enable = true;

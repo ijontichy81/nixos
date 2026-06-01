@@ -10,15 +10,16 @@
 
   networking.hostName = "nvidia";
   
-  fileSystems."~/organisation" = {
-  device = "//192.168.178.10/Organisation/";
+  fileSystems."/home/marco/organisation" = {
+  device = "//192.168.178.10/organisation/";
   fsType = "cifs";
   options = [ "credentials=/etc/smb-credentials" "vers=3.0" "x-systemd.automount" ];
 };
   environment.etc."smb-credentials".text = ''
   username=marco.benther
   password=verwaltung
-'';
+  domain=TEMPELHOF
+  '';
 
   services.printing.enable = true;
   services.avahi = {

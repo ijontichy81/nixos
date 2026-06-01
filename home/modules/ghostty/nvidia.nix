@@ -5,7 +5,7 @@
     enable = true;
 
     settings = {
-      theme = "catppuccin mocha";
+      theme = "Catppuccin Mocha";
       window-padding-x = "8,4";
       window-padding-y = "12,4";
       font-family = "FiraCode Nerd Font";

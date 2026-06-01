@@ -61,6 +61,7 @@
             niri.homeModules.niri
             noctalia.homeModules.default
             vicinae.homeManagerModules.default
+            { stylix.enableReleaseChecks = false; }
           ];
         }
         ({ pkgs, ... }: {
@@ -117,6 +118,7 @@
             niri.homeModules.niri
             noctalia.homeModules.default
             vicinae.homeManagerModules.default
+            { stylix.enableReleaseChecks = false; }
           ];
         }
         ({ pkgs, ... }: {
