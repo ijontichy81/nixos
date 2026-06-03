@@ -42,6 +42,7 @@
           right = [
             { id = "SystemMonitor"; }
             { id = "Tray"; }
+            { id = "Bluetooth"; }
             { id = "NotificationHistory"; }
             { id = "Volume"; }
             { id = "ControlCenter"; }

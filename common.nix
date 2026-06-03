@@ -30,6 +30,9 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.networkmanager.enable = true;
+  networking.firewall.allowedTCPPortRanges = [
+    { from = 5000; to = 5050; }
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";

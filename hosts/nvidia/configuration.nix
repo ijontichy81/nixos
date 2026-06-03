@@ -27,5 +27,7 @@
     publish.enable = true;
   };
 
+  hardware.bluetooth.enable = true;
+
   environment.systemPackages = [ pkgs.system-config-printer ];
 }
