@@ -26,6 +26,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Clean /tmp on each boot
+  boot.tmp.cleanOnBoot = true;
+
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -106,6 +109,15 @@
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Auto GC: delete store entries older than 7 days, weekly
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+  nix.settings.auto-optimise-store = true;
+
   # Wayland for chromium-based apps (Brave, VSCode, Discord, etc.)
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -116,6 +128,9 @@
 
   # SSD TRIM
   services.fstrim.enable = true;
+
+  # Monthly BTRFS scrub to detect/correct silent data corruption
+  services.btrfs.autoScrub.enable = true;
 
   virtualisation.docker.enable = true;
 
@@ -209,6 +224,9 @@
     enable = if config.networking.hostName == "vm" then false else true;
     autodetect = true;
   };
+
+  # Limit systemd journal size
+  services.journald.extraConfig = "SystemMaxUse=500M";
 
   environment.pathsToLink = [ "/bin" ];
 
