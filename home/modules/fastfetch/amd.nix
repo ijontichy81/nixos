@@ -30,12 +30,6 @@
           keyColor = "31";
         }
         {
-          type = "command";
-          key = " ├  ZaneyOS ";
-          keyColor = "31";
-          text = "echo v$" + "{ZANEYOS_VERSION}";
-        }
-        {
           type = "kernel";
           key = " ├  ";
           keyColor = "31";
