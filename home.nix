@@ -17,6 +17,7 @@
     ./home/modules/udiskie
     ./home/modules/vicinae
     ./home/modules/packages
+    ./home/modules/fastfetch	
   ];
 
   home.username = "marco";
