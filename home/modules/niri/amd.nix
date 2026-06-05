@@ -59,6 +59,7 @@
     window-rule {
       match app-id="firefox"
       open-on-workspace "🌐"
+      open-maximized-to-edges true
       match is-active=true
       opacity 0.98
     }
@@ -155,7 +156,7 @@
       Mod+R { switch-preset-column-width; }
       Mod+Tab { toggle-overview; }
 
-      Mod+B { spawn "brave"; }
+      Mod+B { spawn "firefox"; }
       Mod+T { spawn "ghostty"; }
       Mod+E { spawn "nautilus"; }
       Mod+M { spawn "spotify"; }

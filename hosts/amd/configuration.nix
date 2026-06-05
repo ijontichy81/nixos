@@ -10,6 +10,7 @@
     ../../modules/quickshell
     ../../modules/sddm
     ../../modules/heroic
+    ../../modules/comfyui
   ];
 
   networking.hostName = "amd";
