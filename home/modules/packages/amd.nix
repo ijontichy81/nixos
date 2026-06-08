@@ -2,6 +2,13 @@
 
 {
   home.packages = with pkgs; [
+    (audacity.overrideAttrs (old: {
+      cmakeFlags = builtins.map (flag:
+        if pkgs.lib.hasPrefix "-Daudacity_has_vst3=" flag
+        then "-Daudacity_has_vst3=On"
+        else flag
+      ) old.cmakeFlags;
+    }))
     zathura
     imv
     mpv
