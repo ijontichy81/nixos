@@ -1,16 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  environment.systemPackages = [ pkgs.stable-diffusion-cpp-vulkan ];
+  environment.systemPackages = [ pkgs.koboldcpp ];
 
-  networking.firewall.allowedTCPPorts = [ 1234 ];
+  networking.firewall.allowedTCPPorts = [ 5001 ];
 
-  systemd.tmpfiles.rules = [
-    "d /home/marco/sd-cpp-data 0750 marco vip - -"
-  ];
-
-  systemd.services.sd-server = {
-    description = "stable-diffusion.cpp web UI server";
+  systemd.services.koboldcpp = {
+    description = "KoboldCPP AI server with Vulkan GPU support";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     wantedBy = lib.mkForce [ ];
@@ -19,7 +15,7 @@
       Type = "simple";
       User = "marco";
       Group = "vip";
-      ExecStart = "${pkgs.stable-diffusion-cpp-vulkan}/bin/sd-server --listen-ip 127.0.0.1 --listen-port 1234 --backend vulkan --serve-html-path ${pkgs.writeText "sd-webui.html" (builtins.readFile ./sd-webui.html)} -m /home/marco/ComfyUI/models/checkpoints/illu/animosity_illustriousV11.safetensors";
+      ExecStart = "${pkgs.koboldcpp}/bin/koboldcpp --usevulkan --host 127.0.0.1 --port 5001 --sdmodel /home/marco/ComfyUI/models/checkpoints/illu/animosity_illustriousV11.safetensors --sdflashattention --sdoffloadcpu";
       Restart = "on-failure";
       RestartSec = 5;
     };
