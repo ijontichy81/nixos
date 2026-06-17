@@ -7,7 +7,7 @@
     imv
     mpv
     fastfetch
-    firefox
+    firefox-bin
     ghostty
     quickshell
     wl-clipboard

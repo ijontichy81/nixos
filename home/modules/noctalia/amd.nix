@@ -1,7 +1,8 @@
 { pkgs, inputs, config, ... }:
 {
-  programs.noctalia-shell = {
+  programs.noctalia = {
     enable = true;
+    systemd.enable = true;
     settings = {
       settingsVersion = 0;
       bar = {
@@ -355,14 +356,6 @@
       wallpaper = {
         enabled = true;
       };
-      home.file.".cache/noctalia/wallpapers.json" = {
-        text = builtins.toJSON {
-          defaultWallpaper = "${config.home.homeDirectory}/Pictures/papes/green.png";
-          wallpapers = {
-              "HDMI-A-2" = "${config.home.homeDirectory}/Pictures/papes/green.png";
-            };
-        };
-      };
       hooks = {
         enabled = false;
         wallpaperChange = "";
@@ -400,6 +393,15 @@
         gridSnapScale = false;
         monitorWidgets = [ ];
       };
+    };
+  };
+
+  home.file.".cache/noctalia/wallpapers.json" = {
+    text = builtins.toJSON {
+      defaultWallpaper = "${config.home.homeDirectory}/Pictures/papes/green.png";
+      wallpapers = {
+          "HDMI-A-2" = "${config.home.homeDirectory}/Pictures/papes/green.png";
+        };
     };
   };
 }
