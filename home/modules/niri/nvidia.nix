@@ -59,6 +59,7 @@
     window-rule {
       match app-id="firefox"
       open-on-workspace "🌐"
+      open-maximized-to-edges true
       match is-active=true
       opacity 0.98
     }
@@ -67,18 +68,6 @@
       match is-active=false
       opacity 0.90
     }
-    window-rule {
-      match app-id="brave"
-      open-on-workspace "🌐"
-      match is-active=true
-      opacity 0.98
-    }
-    window-rule {
-      match app-id="brave"
-      match is-active=false
-      opacity 0.90
-    }
-
     window-rule {
       match app-id="spotify"
       open-on-workspace "🎵"
@@ -155,7 +144,7 @@
       Mod+R { switch-preset-column-width; }
       Mod+Tab { toggle-overview; }
 
-      Mod+B { spawn "brave"; }
+      Mod+B { spawn "firefox"; }
       Mod+T { spawn "ghostty"; }
       Mod+E { spawn "nautilus"; }
       Mod+M { spawn "spotify"; }

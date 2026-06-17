@@ -11,8 +11,8 @@
     ./home/modules/spicetify
     ./home/modules/opencode
     ./home/modules/mygtk
-    ./home/modules/firefox
     ./home/modules/brave
+    ./home/modules/firefox
     ./home/modules/fish
     ./home/modules/udiskie
     ./home/modules/vicinae
@@ -36,7 +36,7 @@
     XCURSOR_SIZE = "32";
     XCURSOR_THEME = "catppuccin-mocha-green-cursors";
     EDITOR = "nvim";
-    DEFAULT_BROWSER = "${pkgs.brave}/bin/brave";
+    DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
   };
 
   programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;

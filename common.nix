@@ -118,7 +118,7 @@
 
   nix.settings.auto-optimise-store = true;
 
-  # Wayland for chromium-based apps (Brave, VSCode, Discord, etc.)
+  # Wayland for chromium-based apps (VSCode, Discord, etc.)
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };

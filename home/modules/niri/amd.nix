@@ -69,18 +69,6 @@
       opacity 0.90
     }
     window-rule {
-      match app-id="brave"
-      open-on-workspace "🌐"
-      match is-active=true
-      opacity 0.98
-    }
-    window-rule {
-      match app-id="brave"
-      match is-active=false
-      opacity 0.90
-    }
-
-    window-rule {
       match app-id="spotify"
       open-on-workspace "🎵"
       match is-active=true
