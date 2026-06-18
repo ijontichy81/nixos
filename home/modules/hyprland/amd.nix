@@ -414,6 +414,12 @@ in {
             { mouse = true; }
           ];
         }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''"CTRL + SHIFT + S"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"caelestia shell nexus open\")")
+          ];
+        }
       ];
 
       on = {

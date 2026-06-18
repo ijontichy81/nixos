@@ -34,6 +34,26 @@
     iconTheme = "Papirus-Dark";
   };
 
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    style.name = "kvantum";
+    qt6ctSettings = {
+      Appearance = {
+        icon_theme = "Papirus-Dark";
+        custom_palette = true;
+        style = "kvantum";
+      };
+    };
+    qt5ctSettings = {
+      Appearance = {
+        icon_theme = "Papirus-Dark";
+        custom_palette = true;
+        style = "kvantum";
+      };
+    };
+  };
+
   home.sessionVariables = {
     XCURSOR_SIZE = "32";
     XCURSOR_THEME = "catppuccin-mocha-green-cursors";

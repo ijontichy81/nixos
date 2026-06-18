@@ -11,6 +11,11 @@
         persistent = true;
         showOnHover = true;
         dragThreshold = 20;
+        tray = {
+          iconSubs = [
+            { id = "udiskie"; icon = "drive-removable-media-usb-panel"; }
+          ];
+        };
         entries = [
           { id = "logo"; enabled = true; }
           { id = "workspaces"; enabled = true; }
@@ -56,7 +61,7 @@
         };
       };
       paths = {
-        wallpaperDir = "~/Pictures/Wallpapers";
+        wallpaperDir = "~/Pictures/papes/";
       };
     };
     cli = {
@@ -72,6 +77,32 @@
           iconThemeDark = "Papirus-Dark";
         };
       };
+      package = let
+        orig = inputs.caelestia-shell.inputs.caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        wrapper = pkgs.writeShellScript "caelestia-auto-flavour" ''
+          case "$*" in
+            *scheme*set*-m*light*|*scheme*set*--mode*light*)
+              exec ${orig}/bin/caelestia "$@" -f latte
+              ;;
+            *scheme*set*-m*dark*|*scheme*set*--mode*dark*)
+              exec ${orig}/bin/caelestia "$@" -f mocha
+              ;;
+            *)
+              exec ${orig}/bin/caelestia "$@"
+              ;;
+          esac
+        '';
+      in pkgs.runCommand "caelestia-cli-auto-flavour" {
+        buildInputs = [ orig wrapper ];
+      } ''
+        mkdir -p $out/bin
+        cp ${orig}/bin/.caelestia-wrapped $out/bin/.caelestia-wrapped
+        cp ${wrapper}/bin/caelestia-auto-flavour $out/bin/caelestia
+        chmod +x $out/bin/caelestia
+        cp -r ${orig}/lib $out/lib
+        cp -r ${orig}/share $out/share
+        cp -r ${orig}/nix-support $out/nix-support
+      '';
     };
   };
 }
