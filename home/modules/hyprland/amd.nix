@@ -8,181 +8,431 @@ in {
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
+    configType = "lua";
     systemd.enable = true;
 
     settings = {
-      monitor = [
-        ", preferred, auto, 1"
-      ];
+      mod = { _var = mod; };
 
-      xwayland = {
-        enabled = true;
-      };
+      monitor = [{
+        output = "";
+        mode = "preferred";
+        position = "auto";
+        scale = "auto";
+      }];
 
-      input = {
-        kb_layout = "us,de";
-        kb_options = "grp:alt_space_toggle";
-        follow_mouse = 1;
-        touchpad = {
-          natural_scroll = true;
-          disable_while_typing = true;
-          scroll_factor = 0.5;
+      config = {
+        general = {
+          gaps_in = 6;
+          gaps_out = 12;
+          border_size = 2;
+          col = {
+            active_border = {
+              colors = ["rgba(CBA6F7FF)" "rgba(a8ffb5FF)"];
+              angle = 135;
+            };
+            inactive_border = "rgba(45475A88)";
+          };
+          layout = "dwindle";
+          allow_tearing = false;
+          resize_on_border = false;
         };
-        sensitivity = 0;
-      };
 
-      general = {
-        gaps_in = 6;
-        gaps_out = 12;
-        border_size = 2;
-        "col.active_border" = "rgba(CBA6F7FF) rgba(a8ffb5FF) 135deg";
-        "col.inactive_border" = "rgba(45475A88)";
-        cursor_inactive_timeout = 3;
-        layout = "dwindle";
-        allow_tearing = false;
-      };
-
-      decoration = {
-        rounding = 10;
-        active_opacity = 0.88;
-        inactive_opacity = 0.75;
-        fullscreen_opacity = 1.0;
-        drop_shadow = true;
-        shadow_range = 20;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1E1E2ECC)";
-        blur = {
-          enabled = true;
-          size = 6;
-          passes = 3;
-          new_optimizations = true;
-          noise = 0.01;
-          contrast = 0.9;
-          brightness = 0.9;
-          popups = true;
-          popups_ignorealpha = 0.6;
+        decoration = {
+          rounding = 10;
+          active_opacity = 0.88;
+          inactive_opacity = 0.75;
+          fullscreen_opacity = 1.0;
+          shadow = {
+            enabled = true;
+            range = 20;
+            render_power = 3;
+            color = lib.generators.mkLuaInline "0xCC1E1E2E";
+          };
+          blur = {
+            enabled = true;
+            size = 6;
+            passes = 3;
+            new_optimizations = true;
+            noise = 0.01;
+            contrast = 0.9;
+            brightness = 0.9;
+            popups = true;
+            popups_ignorealpha = 0.6;
+          };
         };
+
+        animations = { enabled = true; };
+
+        input = {
+          kb_layout = "us,de";
+          kb_options = "grp:alt_space_toggle";
+          follow_mouse = 1;
+          touchpad = {
+            natural_scroll = true;
+            disable_while_typing = true;
+            scroll_factor = 0.5;
+          };
+          sensitivity = 0;
+        };
+
+        dwindle = {
+          preserve_split = true;
+          force_split = 2;
+          split_width_multiplier = 1.0;
+          smart_split = false;
+          smart_resizing = true;
+          permanent_direction_override = true;
+        };
+
+        xwayland = { enabled = true; };
       };
 
-      animations = {
-        enabled = true;
-        bezier = [
-          "easeOutQuart, 0.25, 1, 0.5, 1"
-          "overshoot, 0.05, 0.9, 0.1, 1.1"
-        ];
-        animation = [
-          "windows, 1, 4, easeOutQuart, popin"
-          "windowsOut, 1, 4, easeOutQuart, popin"
-          "fade, 1, 4, easeOutQuart"
-          "workspaces, 1, 4, easeOutQuart, slide"
-          "border, 1, 4, overshoot"
-        ];
-      };
-
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-        force_split = 2;
-        split_width_multiplier = 1.0;
-        smart_split = false;
-        smart_resizing = true;
-        permanent_direction_override = true;
-      };
-
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_forever = true;
-        workspace_swipe_distance = 300;
-        workspace_swipe_invert = false;
-        workspace_swipe_min_fingers = 3;
-        workspace_swipe_cancel_ratio = 0.15;
-      };
-
-      windowrule = [
-        "float, ^(pavucontrol)$"
-        "float, ^(blueman-manager)$"
-        "float, title:^(Volume Control)$"
-        "float, title:^(File Operation Progress)$"
-        "float, title:^(Picture in picture)$"
-        "float, title:^(Library)$"
-        "opacity 0.98 0.90, ^(firefox)$"
-        "opacity 0.90 0.75, ^(spotify)$"
-        "opacity 0.98 0.88, ^(alacritty)$"
-        "opacity 0.98 0.88, ^(ghostty)$"
-        "opacity 0.98 0.88, ^(org.gnome.Nautilus)$"
+      device = [
+        {
+          name = "soundcore-q21i-nc-(avrcp)";
+          kb_layout = "us,de";
+          kb_options = "grp:alt_space_toggle";
+        }
       ];
 
-      bind = [
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-        "$mod, 6, workspace, 6"
-        "$mod, 7, workspace, 7"
-        "$mod, 8, workspace, 8"
-        "$mod, 9, workspace, 9"
-        "$mod SHIFT, 1, movetoworkspace, 1"
-        "$mod SHIFT, 2, movetoworkspace, 2"
-        "$mod SHIFT, 3, movetoworkspace, 3"
-        "$mod SHIFT, 4, movetoworkspace, 4"
-        "$mod SHIFT, 5, movetoworkspace, 5"
-        "$mod SHIFT, 6, movetoworkspace, 6"
-        "$mod SHIFT, 7, movetoworkspace, 7"
-        "$mod SHIFT, 8, movetoworkspace, 8"
-        "$mod SHIFT, 9, movetoworkspace, 9"
-
-        "$mod, Q, killactive"
-        "$mod SHIFT, Q, exit"
-        "$mod, F, fullscreen"
-        "$mod SHIFT, F, togglefloating"
-        "$mod, Y, fullscreenstate, -1 2"
-        "$mod, R, togglesplit"
-        "$mod, Tab, overview:toggle"
-        "$mod, Left, movefocus, l"
-        "$mod, Right, movefocus, r"
-        "$mod, Up, movefocus, u"
-        "$mod, Down, movefocus, d"
-        "$mod SHIFT, Left, movewindow, l"
-        "$mod SHIFT, Right, movewindow, r"
-        "$mod SHIFT, Up, movewindow, u"
-        "$mod SHIFT, Down, movewindow, d"
-        "$mod, B, exec, firefox"
-        "$mod, T, exec, ghostty"
-        "$mod, E, exec, nautilus"
-        "$mod, M, exec, spotify"
-
-        "$mod, Space, exec, vicinae open"
-        "$mod SHIFT, V, exec, vicinae vicinae://launch/clipboard/history"
-        "$mod SHIFT, S, exec, vicinae vicinae://launch/files/search"
-        "$mod SHIFT, E, exec, vicinae vicinae://open?fallbackText=emoji"
-
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      curve = [
+        {
+          _args = [
+            "easeOutQuart"
+            { type = "bezier"; points = [[0.25 1] [0.5 1]]; }
+          ];
+        }
+        {
+          _args = [
+            "overshoot"
+            { type = "bezier"; points = [[0.05 0.9] [0.1 1.1]]; }
+          ];
+        }
       ];
 
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
+      animation = [
+        { leaf = "windows"; enabled = true; speed = 4; bezier = "easeOutQuart"; style = "popin"; }
+        { leaf = "windowsOut"; enabled = true; speed = 4; bezier = "easeOutQuart"; style = "popin"; }
+        { leaf = "fade"; enabled = true; speed = 4; bezier = "easeOutQuart"; }
+        { leaf = "workspaces"; enabled = true; speed = 4; bezier = "easeOutQuart"; style = "slide"; }
+        { leaf = "border"; enabled = true; speed = 4; bezier = "overshoot"; }
       ];
 
       env = [
-        "XCURSOR_SIZE,32"
-        "XCURSOR_THEME,catppuccin-mocha-green-cursors"
+        { _args = ["XCURSOR_SIZE" "32"]; }
+        { _args = ["XCURSOR_THEME" "catppuccin-mocha-green-cursors"]; }
       ];
 
-      exec-once = [
-        "dconf write /org/gnome/desktop/interface/icon-theme \"'Papirus-Dark'\""
-        "wl-clip-persist --clipboard both"
-        "sh -c 'wl-paste --type text --watch cliphist store'"
-        "sh -c 'wl-paste --type image --watch cliphist store'"
-        "vicinae server"
-        "vicinae theme set catppuccin-mocha"
-        "ghostty"
-        "xwayland-satellite"
+      window_rule = [
+        { match = { class = "^(pavucontrol)$"; }; float = true; }
+        { match = { class = "^(blueman-manager)$"; }; float = true; }
+        { match = { title = "^(Volume Control)$"; }; float = true; }
+        { match = { title = "^(File Operation Progress)$"; }; float = true; }
+        { match = { title = "^(Picture in picture)$"; }; float = true; }
+        { match = { title = "^(Library)$"; }; float = true; }
+        { match = { class = "^(firefox)$"; }; opacity = "0.98 0.90"; }
+        { match = { class = "^(spotify)$"; }; opacity = "0.90 0.75"; }
+        { match = { class = "^(alacritty)$"; }; opacity = "0.98 0.88"; }
+        { match = { class = "^(ghostty)$"; }; opacity = "0.98 0.88"; }
+        { match = { class = "^(org.gnome.Nautilus)$"; }; opacity = "0.98 0.88"; }
       ];
+
+      bind = [
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + 1"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 1})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + 2"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 2})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + 3"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 3})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + 4"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 4})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + 5"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 5})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + 6"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 6})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + 7"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 7})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + 8"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 8})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + 9"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 9})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + 1"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({workspace = 1})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + 2"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({workspace = 2})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + 3"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({workspace = 3})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + 4"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({workspace = 4})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + 5"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({workspace = 5})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + 6"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({workspace = 6})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + 7"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({workspace = 7})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + 8"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({workspace = 8})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + 9"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({workspace = 9})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + Q"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.close()")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + Q"'')
+            (lib.generators.mkLuaInline "hl.dsp.exit()")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + F"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.fullscreen()")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + F"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.float({action = \"toggle\"})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + Y"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.fullscreen_state({internal = -1, client = 2})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + R"'')
+            (lib.generators.mkLuaInline "hl.dsp.layout(\"togglesplit\")")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + left"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({direction = \"left\"})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + right"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({direction = \"right\"})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + up"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({direction = \"up\"})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + down"'')
+            (lib.generators.mkLuaInline "hl.dsp.focus({direction = \"down\"})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + left"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({direction = \"left\"})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + right"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({direction = \"right\"})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + up"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({direction = \"up\"})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + down"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.move({direction = \"down\"})")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + B"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"firefox\")")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + T"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"ghostty\")")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + E"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"nautilus\")")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + M"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"spotify\")")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + Space"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"vicinae open\")")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + V"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"vicinae vicinae://launch/clipboard/history\")")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + S"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"vicinae vicinae://launch/files/search\")")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + SHIFT + E"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"vicinae vicinae://open?fallbackText=emoji\")")
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioRaiseVolume"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+\")")
+            { locked = true; repeating = true; }
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioLowerVolume"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-\")")
+            { locked = true; repeating = true; }
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioMute"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle\")")
+            { locked = true; }
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + mouse:272"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+            { mouse = true; }
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''mod .. " + mouse:273"'')
+            (lib.generators.mkLuaInline "hl.dsp.window.resize()")
+            { mouse = true; }
+          ];
+        }
+      ];
+
+      on = {
+        _args = [
+          "hyprland.start"
+          (lib.generators.mkLuaInline ''
+            function()
+              hl.exec_cmd("dconf write /org/gnome/desktop/interface/icon-theme 'Papirus-Dark'")
+              hl.exec_cmd("wl-clip-persist --clipboard both")
+              hl.exec_cmd("sh -c 'wl-paste --type text --watch cliphist store'")
+              hl.exec_cmd("sh -c 'wl-paste --type image --watch cliphist store'")
+              hl.exec_cmd("vicinae server")
+              hl.exec_cmd("vicinae theme set catppuccin-mocha")
+              hl.exec_cmd("ghostty")
+              hl.exec_cmd("xwayland-satellite")
+            end
+          '')
+        ];
+      };
     };
   };
-
 }

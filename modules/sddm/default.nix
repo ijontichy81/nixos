@@ -45,10 +45,9 @@ in {
         };
       };
     };
-    defaultSession = "hyprland";
+    defaultSession = "niri";
     sessionPackages = [
       inputs.niri.packages.x86_64-linux.niri-unstable
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
     ];
   };
 
@@ -63,5 +62,7 @@ in {
 
   systemd.services.display-manager.environment = {
     XKB_DEFAULT_LAYOUT = "us";
+    QT_QPA_PLATFORM = "xcb";
+    GDK_BACKEND = "x11";
   };
 }

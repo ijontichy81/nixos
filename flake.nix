@@ -55,6 +55,10 @@
             autoEnable = false;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
             polarity = "dark";
+            icons = {
+              enable = true;
+              dark = "Papirus-Dark";
+            };
             targets = {
               qt.enable = true;
             };
@@ -113,6 +117,10 @@
             autoEnable = false;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
             polarity = "dark";
+            icons = {
+              enable = true;
+              dark = "Papirus-Dark";
+            };
             targets = {
               qt.enable = true;
             };
@@ -140,7 +148,7 @@
         ({ pkgs, ... }: {
           nixpkgs.overlays = [
             niri.overlays.niri
-            hyprland.overlays.hyprland
+            hyprland.overlays.hyprland-packages
             (self: super: {
               brave = super.brave.override {
                 commandLineArgs = [ "--ozone-platform=wayland" ];

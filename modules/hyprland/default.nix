@@ -18,7 +18,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    libsForQt5.qt5.qtgraphicaleffects
+    qt5.qtgraphicaleffects
     qt6.qt5compat
     qt6.qtdeclarative
     qt6.qtwayland

@@ -28,6 +28,12 @@
         favouriteApps = [ ];
         hiddenApps = [ ];
       };
+      utilities.toasts = {
+        kbLayoutChanged = false;
+        capsLockChanged = false;
+        numLockChanged = false;
+        kbLimit = false;
+      };
       services = {
         weatherLocation = "Berlin, Germany";
         useFahrenheit = false;
