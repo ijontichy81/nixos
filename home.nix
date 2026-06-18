@@ -6,6 +6,8 @@
     ./home/modules/noctalia
     ./home/modules/nixvim
     ./home/modules/niri
+    ./home/modules/hyprland
+    ./home/modules/caelestia
     ./home/modules/ghostty
     ./home/modules/alacritty
     ./home/modules/spicetify
@@ -36,7 +38,7 @@
     XCURSOR_SIZE = "32";
     XCURSOR_THEME = "catppuccin-mocha-green-cursors";
     EDITOR = "nvim";
-    DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+    DEFAULT_BROWSER = "${pkgs.firefox-bin}/bin/firefox";
   };
 
   programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;

@@ -8,6 +8,7 @@
     ../../modules/retroarch
     ../../modules/steam
     ../../modules/quickshell
+    ../../modules/hyprland
     ../../modules/sddm
     ../../modules/heroic
     ../../modules/comfyui
@@ -17,7 +18,17 @@
 
   services.greetd.enable = lib.mkForce false;
 
-  environment.systemPackages = [ pkgs.protonup-qt ];
+  environment.systemPackages = with pkgs; [
+    protonup-qt
+    ddcutil
+    brightnessctl
+    cava
+    lm_sensors
+    aubio
+    material-symbols
+    nerd-fonts.caskaydia-cove
+    swappy
+  ];
 
   hardware.bluetooth.enable = true;
 }

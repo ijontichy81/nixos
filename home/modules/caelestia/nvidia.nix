@@ -1,0 +1,3 @@
+{ ... }: {
+  programs.caelestia.enable = false;
+}

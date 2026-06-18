@@ -45,9 +45,10 @@ in {
         };
       };
     };
-    defaultSession = "niri";
+    defaultSession = "hyprland";
     sessionPackages = [
       inputs.niri.packages.x86_64-linux.niri-unstable
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
     ];
   };
 

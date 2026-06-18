@@ -19,8 +19,16 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
@@ -34,7 +42,7 @@
     vicinae.url = "github:vicinaehq/vicinae";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixvim, niri, noctalia, vicinae, stylix, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, nixvim, niri, hyprland, noctalia, caelestia-shell, vicinae, stylix, ... }: {
     nixosConfigurations.nvidia = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -123,6 +131,8 @@
             nixvim.homeModules.default
             niri.homeModules.niri
             noctalia.homeModules.default
+            hyprland.homeManagerModules.default
+            caelestia-shell.homeManagerModules.default
             vicinae.homeManagerModules.default
             { stylix.enableReleaseChecks = false; }
           ];
@@ -130,6 +140,7 @@
         ({ pkgs, ... }: {
           nixpkgs.overlays = [
             niri.overlays.niri
+            hyprland.overlays.hyprland
             (self: super: {
               brave = super.brave.override {
                 commandLineArgs = [ "--ozone-platform=wayland" ];
@@ -141,6 +152,7 @@
           environment.systemPackages = [
             niri.packages.x86_64-linux.niri-unstable
             niri.packages.x86_64-linux.xwayland-satellite-unstable
+            pkgs.hyprland
             pkgs.yt-dlp
             (pkgs.callPackage ./catppuccin-mocha-green.nix {})
           ];
