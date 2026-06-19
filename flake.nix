@@ -59,6 +59,26 @@
               enable = true;
               dark = "Papirus-Dark";
             };
+            fonts = {
+              monospace = {
+                package = pkgs.nerd-fonts.fira-code;
+                name = "FiraCode Nerd Font";
+              };
+              sansSerif = {
+                package = pkgs.nerd-fonts.fira-code;
+                name = "FiraCode Nerd Font";
+              };
+              serif = {
+                package = pkgs.noto-fonts;
+                name = "Noto Serif";
+              };
+              sizes = {
+                applications = 12;
+                desktop = 11;
+                popups = 12;
+                terminal = 12;
+              };
+            };
             targets = {
               qt.enable = true;
             };
@@ -120,6 +140,26 @@
             icons = {
               enable = true;
               dark = "Papirus-Dark";
+            };
+            fonts = {
+              monospace = {
+                package = pkgs.nerd-fonts.fira-code;
+                name = "FiraCode Nerd Font";
+              };
+              sansSerif = {
+                package = pkgs.nerd-fonts.fira-code;
+                name = "FiraCode Nerd Font";
+              };
+              serif = {
+                package = pkgs.noto-fonts;
+                name = "Noto Serif";
+              };
+              sizes = {
+                applications = 12;
+                desktop = 11;
+                popups = 12;
+                terminal = 12;
+              };
             };
             targets = {
               qt.enable = true;

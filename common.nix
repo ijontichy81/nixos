@@ -65,10 +65,10 @@
   
   # Fonts
   fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
     noto-fonts-color-emoji
     material-symbols
     breeze-hacked-cursor-theme
+    google-fonts
   ];
 
   # Set font config for emoji

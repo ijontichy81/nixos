@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, osConfig, ... }:
 
 {
   imports = [
@@ -34,26 +34,6 @@
     iconTheme = "Papirus-Dark";
   };
 
-  qt = {
-    enable = true;
-    platformTheme.name = "qtct";
-    style.name = "kvantum";
-    qt6ctSettings = {
-      Appearance = {
-        icon_theme = "Papirus-Dark";
-        custom_palette = true;
-        style = "kvantum";
-      };
-    };
-    qt5ctSettings = {
-      Appearance = {
-        icon_theme = "Papirus-Dark";
-        custom_palette = true;
-        style = "kvantum";
-      };
-    };
-  };
-
   home.sessionVariables = {
     XCURSOR_SIZE = "32";
     XCURSOR_THEME = "catppuccin-mocha-green-cursors";
@@ -62,4 +42,10 @@
   };
 
   programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+
+  stylix.targets = {
+    ghostty.enable = true;
+    firefox.profileNames = [ "marco" ];
+    hyprland.enable = osConfig.networking.hostName == "amd";
+  };
 }

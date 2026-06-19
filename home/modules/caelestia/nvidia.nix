@@ -1,3 +1,3 @@
 { ... }: {
-  programs.caelestia.enable = false;
+  # caelestia is not used on nvidia host
 }

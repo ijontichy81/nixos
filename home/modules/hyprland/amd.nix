@@ -26,13 +26,7 @@ in {
           gaps_in = 6;
           gaps_out = 12;
           border_size = 2;
-          col = {
-            active_border = {
-              colors = ["rgba(CBA6F7FF)" "rgba(a8ffb5FF)"];
-              angle = 135;
-            };
-            inactive_border = "rgba(45475A88)";
-          };
+          col = { };
           layout = "dwindle";
           allow_tearing = false;
           resize_on_border = false;
@@ -47,7 +41,6 @@ in {
             enabled = true;
             range = 20;
             render_power = 3;
-            color = lib.generators.mkLuaInline "0xCC1E1E2E";
           };
           blur = {
             enabled = true;
@@ -132,7 +125,7 @@ in {
         { match = { title = "^(Picture in picture)$"; }; float = true; }
         { match = { title = "^(Library)$"; }; float = true; }
         { match = { class = "^(firefox)$"; }; opacity = "0.98 0.90"; }
-        { match = { class = "^(spotify)$"; }; opacity = "0.90 0.75"; }
+        { match = { class = "^(Spotify)$"; }; opacity = "0.90 0.75"; workspace = "3 silent"; }
         { match = { class = "^(alacritty)$"; }; opacity = "0.98 0.88"; }
         { match = { class = "^(ghostty)$"; }; opacity = "0.98 0.88"; }
         { match = { class = "^(org.gnome.Nautilus)$"; }; opacity = "0.98 0.88"; }
@@ -420,6 +413,12 @@ in {
             (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"caelestia shell nexus open\")")
           ];
         }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''"CTRL + B"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"bash -c 'if caelestia scheme get -m 2>/dev/null | grep -q light; then caelestia scheme set -f mocha -m dark; gsettings set org.gnome.desktop.interface color-scheme prefer-dark 2>/dev/null; sed -i s/gtk-application-prefer-dark-theme=0/gtk-application-prefer-dark-theme=1/ ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; sed -i s/gtk-theme-name=catppuccin-latte-green-standard/gtk-theme-name=catppuccin-mocha-green-standard/ ~/.config/gtk-3.0/settings.ini; else caelestia scheme set -f latte -m light; gsettings set org.gnome.desktop.interface color-scheme prefer-light 2>/dev/null; sed -i s/gtk-application-prefer-dark-theme=1/gtk-application-prefer-dark-theme=0/ ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; sed -i s/gtk-theme-name=catppuccin-mocha-green-standard/gtk-theme-name=catppuccin-latte-green-standard/ ~/.config/gtk-3.0/settings.ini; fi; pkill nautilus 2>/dev/null; true'\")")
+          ];
+        }
       ];
 
       on = {
@@ -435,6 +434,7 @@ in {
               hl.exec_cmd("vicinae theme set catppuccin-mocha")
               hl.exec_cmd("ghostty")
               hl.exec_cmd("xwayland-satellite")
+              hl.exec_cmd("spotify")
             end
           '')
         ];

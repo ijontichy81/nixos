@@ -37,21 +37,25 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    xdg.configFile."gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-theme-name=${themeName}
-      gtk-icon-theme-name=${cfg.iconTheme}
-      gtk-font-name=FiraCode Nerd Font 11
-      gtk-application-prefer-dark-theme=1
+    home.activation.createGtkConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      rm -f ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini
+      mkdir -p ~/.config/gtk-3.0 ~/.config/gtk-4.0
+      cat > ~/.config/gtk-3.0/settings.ini << EOF
+[Settings]
+gtk-theme-name=${themeName}
+gtk-icon-theme-name=${cfg.iconTheme}
+gtk-font-name=FiraCode Nerd Font 11
+gtk-application-prefer-dark-theme=1
+EOF
+      cat > ~/.config/gtk-4.0/settings.ini << EOF
+[Settings]
+gtk-icon-theme-name=${cfg.iconTheme}
+gtk-application-prefer-dark-theme=1
+EOF
     '';
-    xdg.configFile."gtk-4.0/settings.ini".text = ''
-      [Settings]
-      gtk-icon-theme-name=${cfg.iconTheme}
-      gtk-application-prefer-dark-theme=1
-    '';
-    xdg.configFile."gtk-4.0/gtk.css".source = "${themePackage}/share/themes/${themeName}/gtk-4.0/gtk.css";
-    xdg.configFile."gtk-4.0/gtk-dark.css".source = "${themePackage}/share/themes/${themeName}/gtk-4.0/gtk-dark.css";
-    xdg.configFile."gtk-4.0/assets".source = "${themePackage}/share/themes/${themeName}/gtk-4.0/assets";
+    home.file."gtk-4.0/gtk.css".source = "${themePackage}/share/themes/${themeName}/gtk-4.0/gtk.css";
+    home.file."gtk-4.0/gtk-dark.css".source = "${themePackage}/share/themes/${themeName}/gtk-4.0/gtk-dark.css";
+    home.file."gtk-4.0/assets".source = "${themePackage}/share/themes/${themeName}/gtk-4.0/assets";
 
 
     home.packages = [ themePackage papirusThemePackage ];

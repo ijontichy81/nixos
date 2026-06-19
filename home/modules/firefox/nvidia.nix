@@ -1,16 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  home.file."firefox-gnome-theme" = {
-    target = ".mozilla/firefox/marco/chrome/firefox-gnome-theme";
-    source = pkgs.fetchFromGitHub {
-      owner = "rafaelmardojai";
-      repo = "firefox-gnome-theme";
-      rev = "91ca1f82d717b02ceb03a3f423cbe8082ebbb26d";
-      hash = "sha256-S79Hqn2EtSxU4kp99t8tRschSifWD4p/51++0xNWUxw=";
-    };
-  };
-
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
@@ -21,10 +11,6 @@
         "widget.gtk.rounded-bottom-corners.enabled" = true;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "svg.context-properties.content.enabled" = true;
-        "gnomeTheme.hideSingleTab" = true;
-        "gnomeTheme.bookmarksToolbarUnderTabs" = true;
-        "gnomeTheme.normalWidthTabs" = false;
-        "gnomeTheme.tabsAsHeaderbar" = false;
         "browser.download.dir" = "${config.home.homeDirectory}/Downloads";
         "browser.download.defaultFolder" = "${config.home.homeDirectory}/Downloads";
         "browser.download.useDownloadDir" = true;
@@ -37,12 +23,6 @@
         "security.sandbox.content.writeepath4" = "${config.home.homeDirectory}/Music/**";
         "security.sandbox.content.writeepath5" = "${config.home.homeDirectory}/Templates/**";
       };
-      userChrome = ''
-        @import "firefox-gnome-theme/userChrome.css";
-      '';
-      userContent = ''
-        @import "firefox-gnome-theme/userContent.css";
-      '';
     };
   };
 

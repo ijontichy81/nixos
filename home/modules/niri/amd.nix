@@ -39,7 +39,6 @@
       always-center-single-column
       focus-ring {
         width 2
-        active-gradient from="#CBA6F7" to="#a8ffb5" angle=135
       }
     }
 
