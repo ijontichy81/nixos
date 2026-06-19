@@ -1,10 +1,6 @@
 { pkgs, inputs, config, lib, ... }: {
-  programs.horizon = {
-    enable = true;
-    systemd = {
-      enable = true;
-      target = "hyprland-session.target";
-    };
+  programs.caelestia = {
+    enable = false;
     settings = {
       enabled = true;
       appearance = {
@@ -174,38 +170,38 @@
         status = {
           showAudio = false;
           showMicrophone = false;
-          showKbLayout = true;          # KB layout indicator
+          showKbLayout = true;
           showNetwork = true;
           showWifi = true;
-          showBluetooth = true;          # Bluetooth indicator
+          showBluetooth = true;
           showBattery = true;
           showLockStatus = true;
         };
         clock = {
           background = false;
-          showDate = true;               # Clock and date
+          showDate = true;
           showIcon = true;
         };
         entries = [
           { id = "logo"; enabled = true; }
-          { id = "workspaces"; enabled = true; }     # Workspace indicator
+          { id = "workspaces"; enabled = true; }
           { id = "spacer"; enabled = true; }
-          { id = "activeWindow"; enabled = true; }   # Active window
+          { id = "activeWindow"; enabled = true; }
           { id = "spacer"; enabled = true; }
-          { id = "tray"; enabled = true; }           # System tray
-          { id = "clock"; enabled = true; }          # Clock and date
-          { id = "statusIcons"; enabled = true; }    # Network, Bluetooth, KB layout
+          { id = "tray"; enabled = true; }
+          { id = "clock"; enabled = true; }
+          { id = "statusIcons"; enabled = true; }
           { id = "power"; enabled = true; }
         ];
         excludedScreens = [];
       };
       border = {
-        thickness = 10;                  # CRITICAL: Border connects with sidebar
+        thickness = 10;
         rounding = 25;
         smoothing = 20;
       };
       sidebar = {
-        enabled = true;                  # CRITICAL: Sidebar connection
+        enabled = true;
         dragThreshold = 80;
       };
       lock = {
@@ -238,7 +234,7 @@
           audioInputChanged = true;
           capsLockChanged = true;
           numLockChanged = true;
-          kbLayoutChanged = true;        # KB layout indicator
+          kbLayoutChanged = true;
           kbLimit = true;
           vpnChanged = true;
           nowPlaying = false;
@@ -256,7 +252,7 @@
         };
         quickToggles = [
           { id = "wifi"; enabled = true; }
-          { id = "bluetooth"; enabled = true; }      # Bluetooth toggle
+          { id = "bluetooth"; enabled = true; }
           { id = "mic"; enabled = true; }
           { id = "settings"; enabled = true; }
           { id = "gameMode"; enabled = true; }
@@ -277,4 +273,6 @@
       enable = true;
     };
   };
+
+  home.file."Pictures/papes/pink.jpg".source = config.stylix.image;
 }

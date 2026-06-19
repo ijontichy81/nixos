@@ -6,7 +6,7 @@
     ./home/modules/nixvim
     ./home/modules/niri
     ./home/modules/hyprland
-    ./home/modules/horizon/horizon.nix
+    ./home/modules/horizon
     ./home/modules/ghostty
     ./home/modules/alacritty
     ./home/modules/spicetify

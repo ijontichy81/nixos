@@ -30,6 +30,7 @@
     nautilus
     jq
     krita
+    swaybg
     cliphist
     wl-clip-persist
     inotify-tools
