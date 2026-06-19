@@ -53,7 +53,7 @@
             enable = true;
             enableReleaseChecks = false;
             autoEnable = false;
-            base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+            image = ./assets/rgb.png;
             polarity = "dark";
             icons = {
               enable = true;
@@ -83,7 +83,6 @@
               qt.enable = true;
             };
           };
-          environment.systemPackages = [ pkgs.base16-schemes ];
         })
         inputs.agenix.nixosModules.age
         ./hosts/nvidia/configuration.nix
@@ -135,7 +134,7 @@
             enable = true;
             enableReleaseChecks = false;
             autoEnable = false;
-            base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+            image = ./assets/rgb.png;
             polarity = "dark";
             icons = {
               enable = true;
@@ -165,7 +164,6 @@
               qt.enable = true;
             };
           };
-          environment.systemPackages = [ pkgs.base16-schemes ];
         })
         ./hosts/amd/configuration.nix
         home-manager.nixosModules.home-manager
