@@ -3,11 +3,10 @@
 {
   imports = [
     inputs.spicetify-nix.homeManagerModules.default
-    ./home/modules/noctalia
     ./home/modules/nixvim
     ./home/modules/niri
     ./home/modules/hyprland
-    ./home/modules/caelestia
+    ./home/modules/horizon/horizon.nix
     ./home/modules/ghostty
     ./home/modules/alacritty
     ./home/modules/spicetify

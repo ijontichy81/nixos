@@ -15,7 +15,6 @@
       ];
 
       quick-terminal-animation-duration = 0.08;
-      background-blur = true;
     };
   };
 }

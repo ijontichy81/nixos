@@ -794,6 +794,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1781607440,
+        "narHash": "sha256-rxO+uc/KFbSJp+pgyXRuAX6QlG9hJdnt0BXpEQRXY+U=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3e41b24abd260e8f71dbe2f5737d24122f972158",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1772542754,
         "narHash": "sha256-WGV2hy+VIeQsYXpsLjdr4GvHv5eECMISX1zKLTedhdg=",
         "owner": "NixOS",
@@ -811,9 +827,7 @@
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_2",
         "systems": "systems_3"
       },
       "locked": {
@@ -827,26 +841,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixvim",
-        "type": "github"
-      }
-    },
-    "noctalia": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1781709373,
-        "narHash": "sha256-YuZ+iCV15zY9v+85EFlA7XbncXk5DISFPXysRKmrZg0=",
-        "owner": "noctalia-dev",
-        "repo": "noctalia-shell",
-        "rev": "4496c533744c39675ab1cb07893bd81493eca698",
-        "type": "github"
-      },
-      "original": {
-        "owner": "noctalia-dev",
-        "repo": "noctalia-shell",
         "type": "github"
       }
     },
@@ -928,7 +922,6 @@
         "niri": "niri",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
-        "noctalia": "noctalia",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "vicinae": "vicinae"
@@ -1145,7 +1138,7 @@
     },
     "vicinae": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "systems": "systems_6"
       },
       "locked": {

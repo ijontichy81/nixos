@@ -1,5 +1,5 @@
 { pkgs, inputs, config, lib, ... }: {
-  programs.caelestia = {
+  programs.horizon = {
     enable = true;
     systemd = {
       enable = true;
@@ -174,99 +174,45 @@
         status = {
           showAudio = false;
           showMicrophone = false;
-          showKbLayout = false;
+          showKbLayout = true;          # KB layout indicator
           showNetwork = true;
           showWifi = true;
-          showBluetooth = true;
+          showBluetooth = true;          # Bluetooth indicator
           showBattery = true;
           showLockStatus = true;
         };
         clock = {
           background = false;
-          showDate = false;
+          showDate = true;               # Clock and date
           showIcon = true;
         };
         entries = [
           { id = "logo"; enabled = true; }
-          { id = "workspaces"; enabled = true; }
+          { id = "workspaces"; enabled = true; }     # Workspace indicator
           { id = "spacer"; enabled = true; }
-          { id = "activeWindow"; enabled = true; }
+          { id = "activeWindow"; enabled = true; }   # Active window
           { id = "spacer"; enabled = true; }
-          { id = "tray"; enabled = true; }
-          { id = "clock"; enabled = true; }
-          { id = "statusIcons"; enabled = true; }
+          { id = "tray"; enabled = true; }           # System tray
+          { id = "clock"; enabled = true; }          # Clock and date
+          { id = "statusIcons"; enabled = true; }    # Network, Bluetooth, KB layout
           { id = "power"; enabled = true; }
         ];
         excludedScreens = [];
       };
       border = {
-        thickness = 10;
+        thickness = 10;                  # CRITICAL: Border connects with sidebar
         rounding = 25;
         smoothing = 20;
       };
-      dashboard = {
-        enabled = true;
-        showOnHover = true;
-        showDashboard = true;
-        showMedia = true;
-        showPerformance = true;
-        showWeather = true;
-        mediaUpdateInterval = 500;
-        resourceUpdateInterval = 1000;
-        dragThreshold = 50;
-        performance = {
-          showBattery = true;
-          showGpu = true;
-          showCpu = true;
-          showMemory = true;
-          showStorage = true;
-          showNetwork = true;
-        };
-      };
-      launcher = {
-        enabled = true;
-        showOnHover = false;
-        maxShown = 7;
-        maxWallpapers = 9;
-        specialPrefix = "@";
-        actionPrefix = ">";
-        enableDangerousActions = false;
-        dragThreshold = 50;
-        vimKeybinds = false;
-        favouriteApps = [];
-        hiddenApps = [];
-        useFuzzy = {
-          apps = false;
-          actions = false;
-          schemes = false;
-          variants = false;
-          wallpapers = false;
-        };
-        actions = [
-          { name = "Calculator"; icon = "calculate"; description = "Do simple math equations (powered by Qalc)"; command = [ "autocomplete" "calc" ]; enabled = true; dangerous = false; }
-          { name = "Scheme"; icon = "palette"; description = "Change the current colour scheme"; command = [ "autocomplete" "scheme" ]; enabled = true; dangerous = false; }
-          { name = "Wallpaper"; icon = "image"; description = "Change the current wallpaper"; command = [ "autocomplete" "wallpaper" ]; enabled = true; dangerous = false; }
-          { name = "Variant"; icon = "colors"; description = "Change the current scheme variant"; command = [ "autocomplete" "variant" ]; enabled = true; dangerous = false; }
-          { name = "Random"; icon = "casino"; description = "Switch to a random wallpaper"; command = [ "caelestia" "wallpaper" "-r" ]; enabled = true; dangerous = false; }
-          { name = "Light"; icon = "light_mode"; description = "Change the scheme to light mode"; command = [ "setMode" "light" ]; enabled = true; dangerous = false; }
-          { name = "Dark"; icon = "dark_mode"; description = "Change the scheme to dark mode"; command = [ "setMode" "dark" ]; enabled = true; dangerous = false; }
-          { name = "Shutdown"; icon = "power_settings_new"; description = "Shutdown the system"; command = [ "systemctl" "poweroff" ]; enabled = true; dangerous = true; }
-          { name = "Reboot"; icon = "cached"; description = "Reboot the system"; command = [ "systemctl" "reboot" ]; enabled = true; dangerous = true; }
-          { name = "Logout"; icon = "exit_to_app"; description = "Log out of the current session"; command = [ "loginctl" "terminate-user" "" ]; enabled = true; dangerous = true; }
-          { name = "Lock"; icon = "lock"; description = "Lock the current session"; command = [ "loginctl" "lock-session" ]; enabled = true; dangerous = false; }
-          { name = "Sleep"; icon = "bedtime"; description = "Suspend then hibernate"; command = [ "systemctl" "suspend-then-hibernate" ]; enabled = true; dangerous = false; }
-          { name = "Settings"; icon = "settings"; description = "Configure the shell"; command = [ "caelestia" "shell" "nexus" "open" ]; enabled = true; dangerous = false; }
-        ];
+      sidebar = {
+        enabled = true;                  # CRITICAL: Sidebar connection
+        dragThreshold = 80;
       };
       lock = {
         recolourLogo = true;
         enableFprint = true;
         maxFprintTries = 3;
         hideNotifs = false;
-      };
-      nexus = {
-        wallpapersPerRow = 4;
-        networkRescanInterval = 15000;
       };
       notifs = {
         expire = true;
@@ -278,48 +224,6 @@
         actionOnClick = false;
         groupPreviewNum = 3;
         openExpanded = false;
-      };
-      osd = {
-        enabled = true;
-        hideDelay = 2000;
-        enableBrightness = true;
-        enableMicrophone = false;
-      };
-      services = {
-        weatherLocation = "";
-        useFahrenheit = false;
-        useFahrenheitPerformance = false;
-        useTwelveHourClock = false;
-        gpuType = "";
-        visualiserBars = 60;
-        audioIncrement = 0.1;
-        brightnessIncrement = 0.1;
-        maxVolume = 1.0;
-        smartScheme = true;
-        defaultPlayer = "Spotify";
-        playerAliases = [ { from = "com.github.th_ch.youtube_music"; to = "YT Music"; } ];
-        lyricsBackend = "Auto";
-      };
-      session = {
-        enabled = true;
-        dragThreshold = 30;
-        vimKeybinds = false;
-        icons = {
-          logout = "logout";
-          shutdown = "power_settings_new";
-          hibernate = "downloading";
-          reboot = "cached";
-        };
-        commands = {
-          logout = [ "loginctl" "terminate-user" "" ];
-          shutdown = [ "systemctl" "poweroff" ];
-          hibernate = [ "systemctl" "hibernate" ];
-          reboot = [ "systemctl" "reboot" ];
-        };
-      };
-      sidebar = {
-        enabled = true;
-        dragThreshold = 80;
       };
       utilities = {
         enabled = true;
@@ -334,7 +238,7 @@
           audioInputChanged = true;
           capsLockChanged = true;
           numLockChanged = true;
-          kbLayoutChanged = true;
+          kbLayoutChanged = true;        # KB layout indicator
           kbLimit = true;
           vpnChanged = true;
           nowPlaying = false;
@@ -352,7 +256,7 @@
         };
         quickToggles = [
           { id = "wifi"; enabled = true; }
-          { id = "bluetooth"; enabled = true; }
+          { id = "bluetooth"; enabled = true; }      # Bluetooth toggle
           { id = "mic"; enabled = true; }
           { id = "settings"; enabled = true; }
           { id = "gameMode"; enabled = true; }
@@ -373,7 +277,4 @@
       enable = true;
     };
   };
-
-  home.file."Pictures/papes/nudes/bo.jpg".source = config.stylix.image;
-  home.file."Pictures/papes/bo.jpg".source = config.stylix.image;
 }

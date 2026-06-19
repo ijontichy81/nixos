@@ -13,7 +13,6 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -21,10 +20,6 @@
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     caelestia-shell = {
@@ -42,7 +37,7 @@
     vicinae.url = "github:vicinaehq/vicinae";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixvim, niri, hyprland, noctalia, caelestia-shell, vicinae, stylix, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, nixvim, niri, hyprland, caelestia-shell, vicinae, stylix, ... }: {
     nixosConfigurations.nvidia = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -53,7 +48,7 @@
             enable = true;
             enableReleaseChecks = false;
             autoEnable = false;
-            image = ./assets/rgb.png;
+            image = ./assets/pink.jpg;
             polarity = "dark";
             icons = {
               enable = true;
@@ -96,7 +91,6 @@
           home-manager.sharedModules = [
             nixvim.homeModules.default
             niri.homeModules.niri
-            noctalia.homeModules.default
             vicinae.homeManagerModules.default
             { stylix.enableReleaseChecks = false; }
           ];
@@ -134,7 +128,7 @@
             enable = true;
             enableReleaseChecks = false;
             autoEnable = false;
-            image = ./assets/rgb.png;
+            image = ./assets/pink.jpg;
             polarity = "dark";
             icons = {
               enable = true;
@@ -176,7 +170,6 @@
           home-manager.sharedModules = [
             nixvim.homeModules.default
             niri.homeModules.niri
-            noctalia.homeModules.default
             hyprland.homeManagerModules.default
             caelestia-shell.homeManagerModules.default
             vicinae.homeManagerModules.default
