@@ -168,9 +168,7 @@
           background = false;
           recolour = false;
           compact = false;
-          iconSubs = [
-            { id = "udiskie"; icon = "drive-removable-media-usb"; }
-          ];
+          iconSubs = [];
           hiddenIcons = [];
         };
         status = {
@@ -378,4 +376,13 @@
 
   home.file."Pictures/papes/nudes/bo.jpg".source = config.stylix.image;
   home.file."Pictures/papes/bo.jpg".source = config.stylix.image;
+
+  xdg.configFile."qt6ct/qt6ct.conf".text = ''
+    [Appearance]
+    color_scheme_path=
+    custom_palette=false
+    icon_theme=Papirus-Dark
+    standard_dialogs=default
+    style=Breeze
+  '';
 }

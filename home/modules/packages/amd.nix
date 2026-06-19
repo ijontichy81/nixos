@@ -37,7 +37,7 @@
     curl
     udiskie
     github-cli
-    breeze-icons
+    pkgs.kdePackages.breeze-icons
     cava
     winboat
   ];
