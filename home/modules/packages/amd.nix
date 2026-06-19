@@ -37,6 +37,7 @@
     curl
     udiskie
     github-cli
+    breeze-icons
     cava
     winboat
   ];

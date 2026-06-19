@@ -168,7 +168,9 @@
           background = false;
           recolour = false;
           compact = false;
-          iconSubs = [];
+          iconSubs = [
+            { id = "udiskie"; icon = "drive-removable-media-usb"; }
+          ];
           hiddenIcons = [];
         };
         status = {

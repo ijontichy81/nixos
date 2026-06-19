@@ -426,14 +426,11 @@ in {
           "hyprland.start"
           (lib.generators.mkLuaInline ''
             function()
-              hl.exec_cmd("swaybg -i /home/marco/Pictures/papes/pink.jpg -m fill &")
-              hl.exec_cmd("dconf write /org/gnome/desktop/interface/icon-theme 'Papirus-Dark'")
               hl.exec_cmd("wl-clip-persist --clipboard both")
               hl.exec_cmd("sh -c 'wl-paste --type text --watch cliphist store'")
               hl.exec_cmd("sh -c 'wl-paste --type image --watch cliphist store'")
               hl.exec_cmd("vicinae server")
               hl.exec_cmd("vicinae theme set catppuccin-mocha")
-              hl.exec_cmd("quickshell --path ~/.config/horizon/")
               hl.exec_cmd("ghostty")
               hl.exec_cmd("xwayland-satellite")
               hl.exec_cmd("spotify")
