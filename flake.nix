@@ -48,7 +48,7 @@
             enable = true;
             enableReleaseChecks = false;
              autoEnable = false;
-             image = /home/marco/.wallpaper;
+             image = ./assets/purple1.png;
              polarity = "dark";
             icons = {
               enable = true;
@@ -128,7 +128,7 @@
             enable = true;
             enableReleaseChecks = false;
              autoEnable = false;
-             image = /home/marco/.wallpaper;
+             image = ./assets/purple1.png;
              polarity = "dark";
             icons = {
               enable = true;

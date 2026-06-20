@@ -431,7 +431,6 @@ in {
               hl.exec_cmd("sh -c 'wl-paste --type image --watch cliphist store'")
               hl.exec_cmd("vicinae server")
               hl.exec_cmd("vicinae theme set catppuccin-mocha")
-              hl.exec_cmd("caelestia scheme set -n dynamic")
               hl.exec_cmd("ghostty")
               hl.exec_cmd("xwayland-satellite")
               hl.exec_cmd("spotify")
