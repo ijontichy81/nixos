@@ -8,14 +8,14 @@ if [ ! -f "$WALLPAPER" ]; then
     exit 1
 fi
 
-# 1. Update the symlink in assets
-ln -sf "$WALLPAPER" /home/marco/nixos/assets/current-wallpaper.png
+# 1. Copy wallpaper to fixed location (overwrite)
+cp "$WALLPAPER" /home/marco/nixos/assets/current-wallpaper.png
 
-# 2. Add to git so Nix sees it
+# 2. Stage the change
 git -C /home/marco/nixos add assets/current-wallpaper.png
 
 # 3. Trigger NixOS Rebuild
-echo "Rebuilding system with new wallpaper..."
+echo "Rebuilding system..."
 sudo nixos-rebuild switch --flake '/home/marco/nixos#amd'
 
 # 4. Reload Caelestia

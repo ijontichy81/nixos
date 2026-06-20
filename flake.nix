@@ -123,16 +123,18 @@
       specialArgs = { inherit inputs; };
       modules = [
         stylix.nixosModules.stylix
-        ({ pkgs, ... }: {
+        ({ pkgs, ... }:
+        let isLight = builtins.pathExists ./assets/is-light;
+        in {
           stylix = {
             enable = true;
             enableReleaseChecks = false;
-             autoEnable = false;
-             image = ./assets/current-wallpaper.png;
-             polarity = "dark";
+            autoEnable = false;
+            image = if isLight then ./assets/light/ice.jpg else ./assets/dark.jpg;
+            polarity = if isLight then "light" else "dark";
             icons = {
               enable = true;
-              dark = "Papirus-Dark";
+              dark = if isLight then "Papirus" else "Papirus-Dark";
             };
             fonts = {
               monospace = {

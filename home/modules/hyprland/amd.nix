@@ -416,7 +416,7 @@ in {
         {
           _args = [
             (lib.generators.mkLuaInline ''"CTRL + B"'')
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"bash -c 'if caelestia scheme get -m | grep -q dark; then caelestia scheme set -m light; sed -i \\\"s/gtk-application-prefer-dark-theme=1/gtk-application-prefer-dark-theme=0/\\\" ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; else caelestia scheme set -m dark; sed -i \\\"s/gtk-application-prefer-dark-theme=0/gtk-application-prefer-dark-theme=1/\\\" ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; fi; pkill nautilus; true'\")")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"/home/marco/nixos/bin/toggle-theme.sh\")")
           ];
         }
         {
