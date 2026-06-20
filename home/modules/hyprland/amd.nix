@@ -413,10 +413,10 @@ in {
             (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"caelestia shell nexus open\")")
           ];
         }
-        {
+          {
           _args = [
             (lib.generators.mkLuaInline ''"CTRL + B"'')
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"bash -c 'if caelestia scheme get -m 2>/dev/null | grep -q light; then caelestia scheme set -f mocha -m dark; gsettings set org.gnome.desktop.interface color-scheme prefer-dark 2>/dev/null; sed -i s/gtk-application-prefer-dark-theme=0/gtk-application-prefer-dark-theme=1/ ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; sed -i s/gtk-theme-name=catppuccin-latte-green-standard/gtk-theme-name=catppuccin-mocha-green-standard/ ~/.config/gtk-3.0/settings.ini; else caelestia scheme set -f latte -m light; gsettings set org.gnome.desktop.interface color-scheme prefer-light 2>/dev/null; sed -i s/gtk-application-prefer-dark-theme=1/gtk-application-prefer-dark-theme=0/ ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; sed -i s/gtk-theme-name=catppuccin-mocha-green-standard/gtk-theme-name=catppuccin-latte-green-standard/ ~/.config/gtk-3.0/settings.ini; fi; pkill nautilus 2>/dev/null; true'\")")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"bash -c 'if [ \\\"$(readlink ~/.wallpaper)\\\" == \\\"/home/marco/nixos/assets/purple1.png\\\" ]; then ln -sf /home/marco/nixos/assets/pink.jpg ~/.wallpaper; caelestia scheme set -f latte -m light; gsettings set org.gnome.desktop.interface color-scheme prefer-light; sed -i s/gtk-application-prefer-dark-theme=1/gtk-application-prefer-dark-theme=0/ ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; else ln -sf /home/marco/nixos/assets/purple1.png ~/.wallpaper; caelestia scheme set -n dynamic; gsettings set org.gnome.desktop.interface color-scheme prefer-dark; sed -i s/gtk-application-prefer-dark-theme=0/gtk-application-prefer-dark-theme=1/ ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; fi; hyprctl hyprpaper reload ,~/.wallpaper; pkill nautilus; true'\")")
           ];
         }
       ];
@@ -431,6 +431,7 @@ in {
               hl.exec_cmd("sh -c 'wl-paste --type image --watch cliphist store'")
               hl.exec_cmd("vicinae server")
               hl.exec_cmd("vicinae theme set catppuccin-mocha")
+              hl.exec_cmd("caelestia scheme set -n dynamic")
               hl.exec_cmd("ghostty")
               hl.exec_cmd("xwayland-satellite")
               hl.exec_cmd("spotify")

@@ -47,9 +47,9 @@
           stylix = {
             enable = true;
             enableReleaseChecks = false;
-            autoEnable = false;
-            image = ./assets/pink.jpg;
-            polarity = "dark";
+             autoEnable = false;
+             image = /home/marco/.wallpaper;
+             polarity = "dark";
             icons = {
               enable = true;
               dark = "Papirus-Dark";
@@ -127,9 +127,9 @@
           stylix = {
             enable = true;
             enableReleaseChecks = false;
-            autoEnable = false;
-            image = ./assets/pink.jpg;
-            polarity = "dark";
+             autoEnable = false;
+             image = /home/marco/.wallpaper;
+             polarity = "dark";
             icons = {
               enable = true;
               dark = "Papirus-Dark";

@@ -286,7 +286,7 @@
         enableMicrophone = false;
       };
       services = {
-        weatherLocation = "";
+        weatherLocation = "Berlin, Germany";
         useFahrenheit = false;
         useFahrenheitPerformance = false;
         useTwelveHourClock = false;
