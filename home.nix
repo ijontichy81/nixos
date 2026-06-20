@@ -44,7 +44,7 @@
 
   stylix.targets = {
     ghostty.enable = true;
-    firefox.profileNames = [ "marco" ];
+    firefox.enable = false;
     hyprland.enable = osConfig.networking.hostName == "amd";
   };
 }

@@ -413,10 +413,16 @@ in {
             (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"caelestia shell nexus open\")")
           ];
         }
-          {
+        {
           _args = [
             (lib.generators.mkLuaInline ''"CTRL + B"'')
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"bash -c 'if [ \\\"$(readlink ~/.wallpaper)\\\" == \\\"/home/marco/nixos/assets/purple1.png\\\" ]; then ln -sf /home/marco/nixos/assets/pink.jpg ~/.wallpaper; caelestia scheme set -f latte -m light; gsettings set org.gnome.desktop.interface color-scheme prefer-light; sed -i s/gtk-application-prefer-dark-theme=1/gtk-application-prefer-dark-theme=0/ ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; else ln -sf /home/marco/nixos/assets/purple1.png ~/.wallpaper; caelestia scheme set -n dynamic; gsettings set org.gnome.desktop.interface color-scheme prefer-dark; sed -i s/gtk-application-prefer-dark-theme=0/gtk-application-prefer-dark-theme=1/ ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; fi; hyprctl hyprpaper reload ,~/.wallpaper; pkill nautilus; true'\")")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"bash -c 'if caelestia scheme get -m | grep -q dark; then caelestia scheme set -m light; sed -i \\\"s/gtk-application-prefer-dark-theme=1/gtk-application-prefer-dark-theme=0/\\\" ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; else caelestia scheme set -m dark; sed -i \\\"s/gtk-application-prefer-dark-theme=0/gtk-application-prefer-dark-theme=1/\\\" ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini; fi; pkill nautilus; true'\")")
+          ];
+        }
+        {
+          _args = [
+            (lib.generators.mkLuaInline ''"CTRL + SHIFT + B"'')
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"/home/marco/nixos/bin/switch-theme.sh /home/marco/nixos/assets/light/bed.jpg\")")
           ];
         }
       ];
