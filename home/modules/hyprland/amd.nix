@@ -41,6 +41,7 @@ in {
             enabled = true;
             range = 20;
             render_power = 3;
+            color = "0x88ffffff";
           };
           blur = {
             enabled = true;
@@ -417,12 +418,6 @@ in {
           _args = [
             (lib.generators.mkLuaInline ''"CTRL + B"'')
             (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"/home/marco/nixos/bin/toggle-theme.sh\")")
-          ];
-        }
-        {
-          _args = [
-            (lib.generators.mkLuaInline ''"CTRL + SHIFT + B"'')
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"/home/marco/nixos/bin/switch-theme.sh /home/marco/nixos/assets/light/bed.jpg\")")
           ];
         }
       ];

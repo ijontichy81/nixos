@@ -43,8 +43,11 @@
   programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
 
   stylix.targets = {
-    ghostty.enable = true;
+    ghostty.enable = false;
     firefox.enable = false;
-    hyprland.enable = osConfig.networking.hostName == "amd";
+    hyprland.enable = false;
+    btop.enable = false;
+    gtk.enable = false;
+    qt.enable = false;
   };
 }

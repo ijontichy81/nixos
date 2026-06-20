@@ -1,6 +1,14 @@
-{ pkgs, inputs, config, lib, ... }: {
+{ pkgs, inputs, config, lib, ... }: let
+  patchedShell = inputs."caelestia-shell".packages.${pkgs.system}.with-cli.overrideAttrs (old: {
+    patches = (old.patches or []) ++ [./patches/bar-clipboard-entry.patch];
+    postPatch = (old.postPatch or "") + ''
+      cp ${./patches/Clipboard.qml} modules/bar/components/Clipboard.qml
+    '';
+  });
+in {
   programs.caelestia = {
     enable = true;
+    package = patchedShell;
     systemd = {
       enable = true;
       target = "hyprland-session.target";
@@ -174,7 +182,7 @@
         status = {
           showAudio = false;
           showMicrophone = false;
-          showKbLayout = false;
+          showKbLayout = true;
           showNetwork = true;
           showWifi = true;
           showBluetooth = true;
@@ -195,6 +203,7 @@
           { id = "tray"; enabled = true; }
           { id = "clock"; enabled = true; }
           { id = "statusIcons"; enabled = true; }
+          { id = "clipboard"; enabled = true; }
           { id = "power"; enabled = true; }
         ];
         excludedScreens = [];
