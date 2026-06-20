@@ -162,8 +162,6 @@
     spawn-at-startup "wl-clip-persist" "--clipboard" "both"
     spawn-at-startup "sh" "-c" "wl-paste --type text --watch cliphist store"
     spawn-at-startup "sh" "-c" "wl-paste --type image --watch cliphist store"
-    spawn-at-startup "vicinae" "server"
-    spawn-at-startup "vicinae" "theme" "set" "catppuccin-mocha"
     spawn-at-startup "ghostty"
     spawn-at-startup "xwayland-satellite"
   '';

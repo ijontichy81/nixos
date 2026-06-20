@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell
 import Caelestia.Config
 import qs.components
 import qs.services
@@ -9,13 +10,10 @@ Item {
     implicitWidth: icon.implicitHeight + Tokens.padding.small
     implicitHeight: icon.implicitHeight
 
-    StateLayer {
-        anchors.fill: undefined
-        anchors.centerIn: parent
-        implicitWidth: implicitHeight
-        implicitHeight: icon.implicitHeight + Tokens.padding.small
-        radius: Tokens.rounding.full
-        onClicked: Quickshell.execDetached({command: ["vicinae", "vicinae://launch/clipboard/history"]})
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        onClicked: Quickshell.execDetached(["bash", "-c", "vicinae vicinae://launch/clipboard/history"])
     }
 
     MaterialIcon {

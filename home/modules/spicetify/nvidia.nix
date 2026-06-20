@@ -8,9 +8,6 @@
     {
       enable = true;
 
-      theme = lib.mkForce spicePkgs.themes.catppuccin;
-      colorScheme = lib.mkForce "mocha";
-
       customColorScheme = {
         spotify-color = "a8ffb5";
       };

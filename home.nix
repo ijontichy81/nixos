@@ -11,7 +11,6 @@
     ./home/modules/alacritty
     ./home/modules/spicetify
     ./home/modules/opencode
-    ./home/modules/mygtk
     ./home/modules/brave
     ./home/modules/firefox
     ./home/modules/fish
@@ -26,13 +25,6 @@
   home.stateVersion = "26.05";
   home.enableNixpkgsReleaseCheck = false;
 
-  mygtk = {
-    enable = true;
-    theme = "macchiato";
-    accent = "mauve";
-    iconTheme = "Papirus-Dark";
-  };
-
   home.sessionVariables = {
     XCURSOR_SIZE = "32";
     XCURSOR_THEME = "catppuccin-mocha-green-cursors";
@@ -43,11 +35,15 @@
   programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
 
   stylix.targets = {
+    vicinae.enable = true;
+    gtk.enable = true;
+    qt.enable = true;
+    nixvim.enable = true;
+    spicetify.enable = true;
+    opencode.enable = true;
     ghostty.enable = false;
     firefox.enable = false;
     hyprland.enable = false;
     btop.enable = false;
-    gtk.enable = false;
-    qt.enable = false;
   };
 }

@@ -7,8 +7,6 @@
       model = "Big Pickle";
       autoupdate = false;
     };
-    tui = {
-      theme = "catppuccin-macchiato";
-    };
+    tui = {};
   };
 }

@@ -10,8 +10,6 @@
       relativenumber = true;
     };
 
-    colorschemes.catppuccin.enable = true;
-
     plugins.lualine.enable = true;
 
     plugins.indent-blankline = {

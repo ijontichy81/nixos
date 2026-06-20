@@ -1,5 +1,5 @@
 { pkgs, inputs, config, lib, ... }: let
-  patchedShell = inputs."caelestia-shell".packages.${pkgs.system}.with-cli.overrideAttrs (old: {
+  patchedShell = inputs."caelestia-shell".packages.${pkgs.stdenv.hostPlatform.system}.with-cli.overrideAttrs (old: {
     patches = (old.patches or []) ++ [./patches/bar-clipboard-entry.patch];
     postPatch = (old.postPatch or "") + ''
       cp ${./patches/Clipboard.qml} modules/bar/components/Clipboard.qml

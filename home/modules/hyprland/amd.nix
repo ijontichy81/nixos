@@ -28,7 +28,7 @@ in {
           border_size = 2;
           col = { };
           layout = "dwindle";
-          allow_tearing = false;
+          allow_tearing = true;
           resize_on_border = false;
         };
 
@@ -430,8 +430,6 @@ in {
               hl.exec_cmd("wl-clip-persist --clipboard both")
               hl.exec_cmd("sh -c 'wl-paste --type text --watch cliphist store'")
               hl.exec_cmd("sh -c 'wl-paste --type image --watch cliphist store'")
-              hl.exec_cmd("vicinae server")
-              hl.exec_cmd("vicinae theme set catppuccin-mocha")
               hl.exec_cmd("ghostty")
               hl.exec_cmd("xwayland-satellite")
               hl.exec_cmd("spotify")
