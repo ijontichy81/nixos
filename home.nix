@@ -42,6 +42,8 @@
 
   programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
 
+  programs.btop.enable = true;
+
   stylix.targets = {
     vicinae.enable = true;
     qt.enable = true;
@@ -51,6 +53,6 @@
     ghostty.enable = true;
     firefox.enable = false;
     hyprland.enable = false;
-    btop.enable = false;
+    btop.enable = true;
   };
 }

@@ -24,7 +24,6 @@
     tree
     ncdu
     bottom
-    btop
     yazi
     alacritty
     nautilus
