@@ -8,10 +8,6 @@
     {
       enable = true;
 
-      customColorScheme = {
-        spotify-color = "a8ffb5";
-      };
-
       enabledExtensions = with spicePkgs.extensions; [
         adblock
         hidePodcasts
