@@ -41,7 +41,7 @@ in {
             enabled = true;
             range = 20;
             render_power = 3;
-            color = "0x88ffffff";
+						#color = "0x88ffffff";
           };
           blur = {
             enabled = true;
@@ -125,8 +125,8 @@ in {
         { match = { title = "^(File Operation Progress)$"; }; float = true; }
         { match = { title = "^(Picture in picture)$"; }; float = true; }
         { match = { title = "^(Library)$"; }; float = true; }
-        { match = { class = "^(firefox)$"; }; opacity = "0.98 0.90"; }
-        { match = { class = "^(Spotify)$"; }; opacity = "0.90 0.75"; workspace = "3 silent"; }
+        { match = { class = "^(firefox)$"; }; opacity = "0.95 0.90"; }
+        { match = { class = "^(Spotify)$"; }; opacity = "0.75 0.55"; workspace = "3 silent"; }
         { match = { class = "^(alacritty)$"; }; opacity = "0.98 0.88"; }
         { match = { class = "^(ghostty)$"; }; opacity = "0.98 0.88"; }
         { match = { class = "^(org.gnome.Nautilus)$"; }; opacity = "0.98 0.88"; }

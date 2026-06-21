@@ -222,7 +222,7 @@ in {
         showWeather = true;
         mediaUpdateInterval = 500;
         resourceUpdateInterval = 1000;
-        dragThreshold = 50;
+        dragThreshold = 100;
         performance = {
           showBattery = true;
           showGpu = true;
