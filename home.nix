@@ -42,17 +42,19 @@
 
   programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
 
-  programs.btop.enable = true;
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "caelestia";
+    };
+  };
 
   stylix.targets = {
     vicinae.enable = true;
     qt.enable = true;
     nixvim.enable = true;
-    spicetify.enable = true;
     opencode.enable = true;
-    ghostty.enable = true;
     firefox.enable = false;
     hyprland.enable = false;
-    btop.enable = true;
   };
 }

@@ -8,6 +8,7 @@
       window-padding-x = "8,4";
       window-padding-y = "12,4";
       confirm-close-surface = true;
+      command = "sh -c 'cat ~/.local/state/caelestia/sequences.txt; exec zsh'";
 
       keybind = [
         "super+i=inspector:toggle"
