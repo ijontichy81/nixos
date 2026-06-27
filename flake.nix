@@ -109,11 +109,7 @@
           environment.systemPackages = [
             niri.packages.x86_64-linux.niri-unstable
             pkgs.yt-dlp
-            (pkgs.callPackage ./catppuccin-mocha-green.nix {})
           ];
-        })
-        ({ pkgs, ... }: {
-          home-manager.users.marco.xdg.dataFile."icons/catppuccin-mocha-green-cursors".source = "${pkgs.callPackage ./catppuccin-mocha-green.nix {}}/share/icons/catppuccin-mocha-green-cursors";
         })
       ];
     };
@@ -123,18 +119,16 @@
       specialArgs = { inherit inputs; };
       modules = [
         stylix.nixosModules.stylix
-        ({ pkgs, ... }:
-        let isLight = builtins.pathExists ./assets/is-light;
-        in {
+        ({ pkgs, ... }: {
           stylix = {
             enable = true;
             enableReleaseChecks = false;
             autoEnable = false;
-            image = if isLight then ./assets/light/ice.jpg else ./assets/dark.jpg;
-            polarity = if isLight then "light" else "dark";
+            image = ./assets/dark.jpg;
+            polarity = "dark";
             icons = {
               enable = true;
-              dark = if isLight then "Papirus" else "Papirus-Dark";
+              dark = "Papirus-Dark";
             };
             fonts = {
               monospace = {
@@ -195,11 +189,7 @@
             niri.packages.x86_64-linux.xwayland-satellite-unstable
             pkgs.hyprland
             pkgs.yt-dlp
-            (pkgs.callPackage ./catppuccin-mocha-green.nix {})
           ];
-        })
-        ({ pkgs, ... }: {
-          home-manager.users.marco.xdg.dataFile."icons/catppuccin-mocha-green-cursors".source = "${pkgs.callPackage ./catppuccin-mocha-green.nix {}}/share/icons/catppuccin-mocha-green-cursors";
         })
       ];
     };

@@ -34,8 +34,6 @@
   };
 
   home.sessionVariables = {
-    XCURSOR_SIZE = "32";
-    XCURSOR_THEME = "catppuccin-mocha-green-cursors";
     EDITOR = "nvim";
     DEFAULT_BROWSER = "${pkgs.firefox-bin}/bin/firefox";
   };
@@ -49,12 +47,27 @@
     };
   };
 
-  stylix.targets = {
-    vicinae.enable = true;
-    qt.enable = true;
-    nixvim.enable = true;
-    opencode.enable = true;
-    firefox.enable = false;
-    hyprland.enable = false;
+  home.packages = with pkgs; [
+    (catppuccin-cursors.overrideAttrs (old: {
+      meta = old.meta // {
+        outputsToInstall = builtins.filter (o: o != "out") (builtins.attrNames catppuccin-cursors);
+      };
+    }))
+  ];
+
+  stylix = {
+    cursor = {
+      name = "catppuccin-frappe-sapphire-cursors";
+      package = pkgs.catppuccin-cursors.frappeSapphire;
+      size = 32;
+    };
+    targets = {
+      vicinae.enable = true;
+      qt.enable = true;
+      nixvim.enable = true;
+      opencode.enable = true;
+      firefox.enable = false;
+      hyprland.enable = false;
+    };
   };
 }

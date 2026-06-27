@@ -9,7 +9,7 @@ in {
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
     configType = "lua";
-    systemd.enable = true;
+    systemd.enable = false;
 
     settings = {
       mod = { _var = mod; };
@@ -113,10 +113,7 @@ in {
         { leaf = "border"; enabled = true; speed = 4; bezier = "overshoot"; }
       ];
 
-      env = [
-        { _args = ["XCURSOR_SIZE" "32"]; }
-        { _args = ["XCURSOR_THEME" "catppuccin-mocha-green-cursors"]; }
-      ];
+      env = [ ];
 
       window_rule = [
         { match = { class = "^(pavucontrol)$"; }; float = true; }
@@ -438,5 +435,13 @@ in {
         ];
       };
     };
+
+    extraConfig = ''
+      hl.config({
+        misc = {
+          disable_watchdog_warning = true
+        }
+      })
+    '';
   };
 }

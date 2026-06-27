@@ -12,12 +12,8 @@
     workspace "🎵"
     environment {
       GTK_ICON_THEME "Papirus-Dark"
-      XCURSOR_THEME "catppuccin-mocha-green-cursors"
-      XCURSOR_SIZE "32"
     }
     cursor {
-      xcursor-theme "catppuccin-mocha-green-cursors"
-      xcursor-size 32
       hide-when-typing
     }
     input {

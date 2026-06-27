@@ -40,5 +40,6 @@
     pkgs.kdePackages.breeze-icons
     cava
     winboat
+    protonup-qt
   ];
 }

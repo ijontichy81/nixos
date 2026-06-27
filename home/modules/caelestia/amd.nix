@@ -11,7 +11,7 @@ in {
     package = patchedShell;
     systemd = {
       enable = true;
-      target = "hyprland-session.target";
+      target = "graphical-session.target";
     };
     settings = {
       enabled = true;
