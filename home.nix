@@ -50,7 +50,7 @@
   home.packages = with pkgs; [
     (catppuccin-cursors.overrideAttrs (old: {
       meta = old.meta // {
-        outputsToInstall = builtins.filter (o: o != "out") (builtins.attrNames catppuccin-cursors);
+        outputsToInstall = builtins.filter (o: o != "out") (builtins.getAttr "outputs" catppuccin-cursors);
       };
     }))
   ];
