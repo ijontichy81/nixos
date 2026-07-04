@@ -1,9 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   programs.nixvim = {
     enable = true;
     version.enableNixpkgsReleaseCheck = false;
+    nixpkgs.source = inputs.nixpkgs;
 
     opts = {
       number = true;
@@ -41,7 +42,10 @@
 
     lsp.servers = {
       ruff.enable = true;
-      pyright.enable = true;
+      pyright = {
+        enable = true;
+        package = pkgs.pyright;
+      };
       ts_ls.enable = true;
       rust_analyzer.enable = true;
       nil.enable = true;

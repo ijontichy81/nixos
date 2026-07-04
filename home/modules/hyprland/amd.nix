@@ -122,8 +122,8 @@ in {
         { match = { title = "^(File Operation Progress)$"; }; float = true; }
         { match = { title = "^(Picture in picture)$"; }; float = true; }
         { match = { title = "^(Library)$"; }; float = true; }
-        { match = { class = "^(firefox)$"; }; opacity = "0.95 0.90"; }
-        { match = { class = "^(Spotify)$"; }; opacity = "0.95 0.65"; workspace = "3 silent"; }
+        { match = { class = "^(firefox)$"; }; opacity = "0.95 0.90"; workspace = "2";}
+        { match = { class = "^[Ss]potify$"; }; opacity = "0.95 0.65"; workspace = "3"; no_initial_focus = true; }
         { match = { class = "^(alacritty)$"; }; opacity = "0.98 0.88"; }
         { match = { class = "^(ghostty)$"; }; opacity = "0.98 0.88"; }
         { match = { class = "^(org.gnome.Nautilus)$"; }; opacity = "0.98 0.88"; }

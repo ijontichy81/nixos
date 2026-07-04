@@ -13,6 +13,7 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -34,7 +35,10 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vicinae.url = "github:vicinaehq/vicinae";
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, nixvim, niri, hyprland, caelestia-shell, vicinae, stylix, ... }: {
@@ -108,6 +112,8 @@
         ({ pkgs, ... }: {
           environment.systemPackages = [
             niri.packages.x86_64-linux.niri-unstable
+            pkgs.bitwarden-desktop
+            pkgs.bitwarden-cli
             pkgs.yt-dlp
           ];
         })
@@ -187,6 +193,8 @@
           environment.systemPackages = [
             niri.packages.x86_64-linux.niri-unstable
             niri.packages.x86_64-linux.xwayland-satellite-unstable
+            pkgs.bitwarden-desktop
+            pkgs.bitwarden-cli
             pkgs.hyprland
             pkgs.yt-dlp
           ];
