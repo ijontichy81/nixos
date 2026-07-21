@@ -28,7 +28,7 @@ let
     trap 'rm -f "$logfile"' EXIT
 
     (${koboldcpp-fixed}/bin/koboldcpp "$@" 2>&1; echo $? > "$logfile.exit") \
-      | tee -u "$logfile" &
+      | tee "$logfile" &
     kcpid=$!
 
     vae_status="unknown"
@@ -87,7 +87,7 @@ in
       Type = "exec";
       User = "marco";
       Group = "vip";
-      ExecStart = "${status-script} --usevulkan --host 127.0.0.1 --port 5001 --sdmodel /home/marco/ComfyUI/models/checkpoints/illu/animosity_illustriousV11.safetensors --debugmode --sdflashattention --sdoffloadcpu";
+      ExecStart = "${status-script} /home/marco/models/text/Qwythos-9B-Claude-Mythos-5-1M-Q4_K_M.gguf --usevulkan --host 0.0.0.0 --port 5001 --debugmode";
       Restart = "on-failure";
       RestartSec = 5;
     };

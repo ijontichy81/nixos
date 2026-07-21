@@ -1,0 +1,24 @@
+--- a/modules/background/Wallpaper.qml
++++ b/modules/background/Wallpaper.qml
+@@ -2,6 +2,7 @@
+
+ import QtQuick
+ import Caelestia.Config
++import QtQuick.Effects
+ import qs.components
+ import qs.components.filedialog
+ import qs.components.images
+@@ -110,6 +111,13 @@
+
+             opacity: 0
+
++            layer.enabled: Config.background.blur
++            layer.effect: MultiEffect {
++                blurEnabled: true
++                blur: Config.background.blurAmount
++                blurMax: 64
++            }
++
+             onStatusChanged: {
+                 if (status === Image.Ready)
+                     anim.start();

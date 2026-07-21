@@ -19,6 +19,7 @@
     ./home/modules/vicinae
     ./home/modules/packages
     ./home/modules/fastfetch
+    ./home/modules/spotify-backup
   ];
 
   home.username = "marco";
@@ -54,6 +55,8 @@
       };
     }))
   ];
+
+  home.pointerCursor.enable = true;
 
   stylix = {
     cursor = {

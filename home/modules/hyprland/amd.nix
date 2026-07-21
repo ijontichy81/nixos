@@ -26,7 +26,10 @@ in {
           gaps_in = 6;
           gaps_out = 12;
           border_size = 2;
-          col = { };
+          col = {
+            active_border = "0xff${config.lib.stylix.colors.base0D}";
+            inactive_border = "0xff${config.lib.stylix.colors.base03}";
+          };
           layout = "dwindle";
           allow_tearing = true;
           resize_on_border = false;
@@ -110,7 +113,8 @@ in {
         { leaf = "windowsOut"; enabled = true; speed = 4; bezier = "easeOutQuart"; style = "popin"; }
         { leaf = "fade"; enabled = true; speed = 4; bezier = "easeOutQuart"; }
         { leaf = "workspaces"; enabled = true; speed = 4; bezier = "easeOutQuart"; style = "slide"; }
-        { leaf = "border"; enabled = true; speed = 4; bezier = "overshoot"; }
+        { leaf = "border"; enabled = true; speed = 10; bezier = "overshoot"; }
+        { leaf = "borderangle"; enabled = true; speed = 8; bezier = "overshoot"; style = "once"; }
       ];
 
       env = [ ];

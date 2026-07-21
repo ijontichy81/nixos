@@ -52,7 +52,7 @@
             enable = true;
             enableReleaseChecks = false;
              autoEnable = false;
-             image = ./assets/current-wallpaper.png;
+             image = ./assets/dark.jpg;
              polarity = "dark";
             icons = {
               enable = true;

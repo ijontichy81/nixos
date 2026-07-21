@@ -32,5 +32,14 @@ sed -i "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=$CURSOR/" \
 dconf write /org/gnome/desktop/interface/cursor-theme "'$CURSOR'" 2>/dev/null
 hyprctl setcursor "$CURSOR" 32 2>/dev/null
 
-# 5. Reload UI components
+# 5. Update Hyprland window borders to match current scheme
+if [ "$MODE" = "dark" ]; then
+    hyprctl keyword general:col.active_border "rgba(cba6f7ee) rgba(89b4faee) 45deg" 2>/dev/null
+    hyprctl keyword general:col.inactive_border "rgba(585b70aa)" 2>/dev/null
+else
+    hyprctl keyword general:col.active_border "rgba(8839efee) rgba(04a5e5ee) 45deg" 2>/dev/null
+    hyprctl keyword general:col.inactive_border "rgba(9ca0b0aa)" 2>/dev/null
+fi
+
+# 6. Reload UI components
 pkill nautilus

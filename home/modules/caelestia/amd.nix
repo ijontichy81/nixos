@@ -1,6 +1,10 @@
 { pkgs, inputs, config, lib, ... }: let
   patchedShell = inputs."caelestia-shell".packages.${pkgs.stdenv.hostPlatform.system}.with-cli.overrideAttrs (old: {
-    patches = (old.patches or []) ++ [./patches/bar-clipboard-entry.patch];
+    patches = (old.patches or []) ++ [
+        ./patches/clipboard-entry.patch
+        ./patches/background-config-blur.patch
+        ./patches/wallpaper-blur.patch
+      ];
     postPatch = (old.postPatch or "") + ''
       cp ${./patches/Clipboard.qml} modules/bar/components/Clipboard.qml
     '';
@@ -117,6 +121,8 @@ in {
       background = {
         enabled = true;
         wallpaperEnabled = true;
+        blur = true;
+        blurAmount = 0.3;
         desktopClock = {
           enabled = false;
           scale = 1.0;
@@ -307,7 +313,7 @@ in {
         smartScheme = true;
         defaultPlayer = "Spotify";
         playerAliases = [ { from = "com.github.th_ch.youtube_music"; to = "YT Music"; } ];
-        lyricsBackend = "Auto";
+        lyricsBackend = "NetEase";
       };
       session = {
         enabled = true;

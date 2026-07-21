@@ -1,13 +1,13 @@
 --- a/modules/bar/Bar.qml
 +++ b/modules/bar/Bar.qml
-@@ -173,6 +173,12 @@
+@@ -78,6 +78,12 @@
                      }
                  }
              }
 +            DelegateChoice {
 +                roleValue: "clipboard"
-+                delegate: WrappedLoader {
-+                    sourceComponent: Clipboard {}
++                delegate: EntryWrapper {
++                    Clipboard {}
 +                }
 +            }
          }

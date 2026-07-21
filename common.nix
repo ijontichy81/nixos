@@ -109,9 +109,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Allow insecure Electron for bitwarden-desktop
+  # Allow insecure Electron packages
   nixpkgs.config.permittedInsecurePackages = [
     "electron-39.8.10"
+    "electron-40.10.5"
   ];
 
   # Enable flakes
