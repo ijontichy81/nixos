@@ -47,13 +47,16 @@
       specialArgs = { inherit inputs; };
       modules = [
         stylix.nixosModules.stylix
-        ({ pkgs, ... }: {
+        ({ pkgs, ... }: let
+           isLight = builtins.pathExists ./assets/is-light;
+         in {
           stylix = {
             enable = true;
             enableReleaseChecks = false;
              autoEnable = false;
-             image = ./assets/dark.jpg;
-             polarity = "dark";
+             image = if isLight then ./assets/light/bed.jpg else ./assets/dark.jpg;
+             polarity = if isLight then "light" else "dark";
+             cursor.size = 28;
             icons = {
               enable = true;
               dark = "Papirus-Dark";
@@ -125,13 +128,15 @@
       specialArgs = { inherit inputs; };
       modules = [
         stylix.nixosModules.stylix
-        ({ pkgs, ... }: {
+        ({ pkgs, ... }: let
+          isLight = builtins.pathExists ./assets/is-light;
+        in {
           stylix = {
             enable = true;
             enableReleaseChecks = false;
             autoEnable = false;
-            image = ./assets/dark.jpg;
-            polarity = "dark";
+            image = if isLight then ./assets/light/bed.jpg else ./assets/dark.jpg;
+            polarity = if isLight then "light" else "dark";
             icons = {
               enable = true;
               dark = "Papirus-Dark";

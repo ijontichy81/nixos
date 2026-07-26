@@ -1,7 +1,16 @@
 # yt-dlp Playlist Download One-Liner
 
 ```bash
-yt-dlp -f 'ba[ext=opus]/ba[acodec^=opus]/ba' --extract-audio --audio-format opus --audio-quality 0 --embed-thumbnail --embed-metadata --embed-chapters --write-description --write-info-json --write-sub --embed-subs --convert-subs srt --download-archive archive.txt --sponsorblock-mark all --sponsorblock-remove sponsor -o '%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s' '<PLAYLIST_URL>'
+yt-dlp \
+  -f 'ba[ext=opus]/ba[acodec^=opus]/ba' \
+  --extract-audio --audio-format opus --audio-quality 0 \
+  --embed-thumbnail --embed-metadata --embed-chapters \
+  --write-description --write-info-json \
+  --write-sub --embed-subs --convert-subs srt \
+  --download-archive archive.txt \
+  --sponsorblock-mark all --sponsorblock-remove sponsor \
+  -o '%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s' \
+  '<PLAYLIST_URL>'
 ```
 
 ## Flags Breakdown

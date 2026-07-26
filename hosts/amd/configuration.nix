@@ -11,6 +11,7 @@
     #../../modules/hyprland
     ../../modules/sddm
     ../../modules/heroic
+    ../../modules/koboldcpp
     ../../modules/comfyui
   ];
 
@@ -67,6 +68,7 @@
     libnotify
     slurp
     grim
+    realesrgan-ncnn-vulkan
   ];
 
   hardware.bluetooth.enable = true;
