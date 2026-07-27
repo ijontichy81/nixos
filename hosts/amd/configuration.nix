@@ -12,7 +12,6 @@
     ../../modules/sddm
     ../../modules/heroic
     ../../modules/koboldcpp
-    ../../modules/comfyui
   ];
 
   networking.hostName = "amd";
