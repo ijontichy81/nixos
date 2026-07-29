@@ -49,6 +49,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    lact
     protonup-qt
     ddcutil
     brightnessctl
@@ -69,6 +70,11 @@
     grim
     realesrgan-ncnn-vulkan
   ];
+
+  systemd.packages = [ pkgs.lact ];
+  systemd.services.lactd = {
+    wantedBy = [ "multi-user.target" ];
+  };
 
   hardware.bluetooth.enable = true;
 }

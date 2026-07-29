@@ -87,7 +87,7 @@ in
       Type = "exec";
       User = "marco";
       Group = "vip";
-      ExecStart = "${status-script} --sdmodel /home/marco/models/sd/oneObsession_v23.safetensors --usevulkan --sdclipgpu --sdflashattention --sdoffloadcpu --sdconvdirect vaeonly --sdtiledvae 768 --host 0.0.0.0 --port 5001 --debugmode --nomodel";
+      ExecStart = "${status-script} --sdmodel /home/marco/models/sd/milkyDreams_v40.safetensors --usevulkan --sdclipgpu --sdflashattention --sdoffloadcpu --sdconvdirect vaeonly --sdtiledvae 768 --sdlora /home/marco/models/sd/loras/ --host 0.0.0.0 --port 5001 --debugmode --nomodel";
       Restart = "on-failure";
       RestartSec = 5;
     };

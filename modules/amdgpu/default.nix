@@ -10,7 +10,6 @@
   nixpkgs.config.rocmSupport = true;
 
   environment.systemPackages = with pkgs; [
-    lact
     clinfo
   ];
 
@@ -28,8 +27,7 @@
       "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
     ];
 
-  systemd.packages = with pkgs; [ lact ];
-  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+  
 
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1";

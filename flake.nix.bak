@@ -109,7 +109,7 @@
               brave = super.writeShellScriptBin "brave" ''
                 ${super.brave}/bin/brave --ozone-platform=wayland "$@"
               '';
-              lact = super.lact.override { libdisplay-info = super.libdisplay-info_0_2; };
+              lact = super.lact.override (super.lib.display-info_0_2 or {});
             })
           ];
         })
@@ -192,7 +192,7 @@
               brave = super.writeShellScriptBin "brave" ''
                 ${super.brave}/bin/brave --ozone-platform=wayland "$@"
               '';
-              lact = super.lact.override { libdisplay-info = super.libdisplay-info_0_2; };
+              lact = super.lact.override (super.lib.display-info_0_2 or {});
             })
           ];
         })
