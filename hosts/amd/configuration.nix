@@ -16,6 +16,13 @@
 
   networking.hostName = "amd";
 
+  # Mesh VPN so sdgen.py can reach koboldcpp from anywhere (no port forwarding,
+  # immune to dynamic IPs). Authenticate once with: sudo tailscale up
+  services.tailscale.enable = true;
+
+  # SSH for pulling files to / managing the box from phone (Termux)
+  services.openssh.enable = true;
+
   services.greetd.enable = lib.mkForce false;
 
   # UWSM-managed Hyprland

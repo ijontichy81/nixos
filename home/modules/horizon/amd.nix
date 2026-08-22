@@ -167,16 +167,15 @@
           iconSubs = [];
           hiddenIcons = [];
         };
-        status = {
-          showAudio = false;
-          showMicrophone = false;
-          showKbLayout = true;
-          showNetwork = true;
-          showWifi = true;
-          showBluetooth = true;
-          showBattery = true;
-          showLockStatus = true;
-        };
+        statusIcons = [
+          { id = "lockStatus"; enabled = true; }
+          { id = "audio"; enabled = false; }
+          { id = "microphone"; enabled = false; }
+          { id = "kbLayout"; enabled = true; }
+          { id = "network"; enabled = true; }
+          { id = "bluetooth"; enabled = true; }
+          { id = "battery"; enabled = true; }
+        ];
         clock = {
           background = false;
           showDate = true;

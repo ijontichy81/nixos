@@ -7,6 +7,7 @@
     mpv
     fastfetch
     firefox-bin
+    chromium
     ghostty
     quickshell
     wl-clipboard

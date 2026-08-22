@@ -109,13 +109,23 @@
               brave = super.writeShellScriptBin "brave" ''
                 ${super.brave}/bin/brave --ozone-platform=wayland "$@"
               '';
-              lact = super.lact.override { libdisplay-info = super.libdisplay-info_0_2; };
+              lact = super.lact.override { libdisplay-info_0_3 = super.libdisplay-info_0_3; };
+              libdisplay-info_0_2 = super.libdisplay-info.overrideAttrs (old: {
+                version = "0.2.0";
+                src = super.fetchFromGitLab {
+                  domain = "gitlab.freedesktop.org";
+                  owner = "emersion";
+                  repo = "libdisplay-info";
+                  rev = "0.2.0";
+                  sha256 = "sha256-6xmWBrPHghjok43eIDGeshpUEQTuwWLXNHg7CnBUt3Q=";
+                };
+              });
             })
           ];
         })
         ({ pkgs, ... }: {
           environment.systemPackages = [
-            niri.packages.x86_64-linux.niri-unstable
+            pkgs.niri-unstable
             pkgs.bitwarden-desktop
             pkgs.bitwarden-cli
             pkgs.yt-dlp
@@ -192,14 +202,24 @@
               brave = super.writeShellScriptBin "brave" ''
                 ${super.brave}/bin/brave --ozone-platform=wayland "$@"
               '';
-              lact = super.lact.override { libdisplay-info = super.libdisplay-info_0_2; };
+              lact = super.lact.override { libdisplay-info_0_3 = super.libdisplay-info_0_3; };
+              libdisplay-info_0_2 = super.libdisplay-info.overrideAttrs (old: {
+                version = "0.2.0";
+                src = super.fetchFromGitLab {
+                  domain = "gitlab.freedesktop.org";
+                  owner = "emersion";
+                  repo = "libdisplay-info";
+                  rev = "0.2.0";
+                  sha256 = "sha256-6xmWBrPHghjok43eIDGeshpUEQTuwWLXNHg7CnBUt3Q=";
+                };
+              });
             })
           ];
         })
         ({ pkgs, ... }: {
           environment.systemPackages = [
-            niri.packages.x86_64-linux.niri-unstable
-            niri.packages.x86_64-linux.xwayland-satellite-unstable
+            pkgs.niri-unstable
+            pkgs.xwayland-satellite-unstable
             pkgs.bitwarden-desktop
             pkgs.bitwarden-cli
             pkgs.hyprland

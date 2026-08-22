@@ -39,7 +39,7 @@
     DEFAULT_BROWSER = "${pkgs.firefox-bin}/bin/firefox";
   };
 
-  programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+  programs.niri.package = pkgs.niri-unstable;
 
   programs.btop = {
     enable = true;

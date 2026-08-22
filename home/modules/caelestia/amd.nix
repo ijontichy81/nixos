@@ -86,7 +86,7 @@ in {
           timeouts = [
             { timeout = 180; idleAction = "lock"; respectInhibitors = true; }
             { timeout = 300; idleAction = "dpms off"; returnAction = "dpms on"; }
-            { timeout = 600; idleAction = [ "systemctl" "suspend-then-hibernate" ]; }
+            # no auto-suspend: it killed gens in progress; sleep via power menu only
           ];
         };
         battery = {
@@ -179,16 +179,15 @@ in {
           iconSubs = [];
           hiddenIcons = [];
         };
-        status = {
-          showAudio = false;
-          showMicrophone = false;
-          showKbLayout = true;
-          showNetwork = true;
-          showWifi = true;
-          showBluetooth = true;
-          showBattery = true;
-          showLockStatus = true;
-        };
+        statusIcons = [
+          { id = "lockStatus"; enabled = true; }
+          { id = "audio"; enabled = false; }
+          { id = "microphone"; enabled = false; }
+          { id = "kbLayout"; enabled = true; }
+          { id = "network"; enabled = true; }
+          { id = "bluetooth"; enabled = true; }
+          { id = "battery"; enabled = true; }
+        ];
         clock = {
           background = false;
           showDate = false;
