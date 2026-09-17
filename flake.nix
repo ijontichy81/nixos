@@ -1,5 +1,5 @@
 {
-  description = "NixOS Niri";
+  description = "NixOS Hyprland";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -15,16 +15,20 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
+      # Workaround: Hyprland still pins hyprutils 0.14.1, but nixpkgs'
+      # hyprtoolkit 0.6.0 needs >= 0.14.2 (pulled in via the
+      # hyprland-packages overlay). Drop once upstream bumps their lock.
+      inputs.hyprutils.url = "github:hyprwm/hyprutils/v0.14.2";
     };
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
@@ -41,7 +45,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixvim, niri, hyprland, caelestia-shell, vicinae, stylix, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, nixvim, hyprland, caelestia-shell, dms, vicinae, stylix, ... }: {
     nixosConfigurations.nvidia = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -97,14 +101,13 @@
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.sharedModules = [
             nixvim.homeModules.default
-            niri.homeModules.niri
+            hyprland.homeManagerModules.default
             vicinae.homeManagerModules.default
             { stylix.enableReleaseChecks = false; }
           ];
         }
         ({ pkgs, ... }: {
           nixpkgs.overlays = [
-            niri.overlays.niri
             (self: super: {
               brave = super.writeShellScriptBin "brave" ''
                 ${super.brave}/bin/brave --ozone-platform=wayland "$@"
@@ -125,7 +128,7 @@
         })
         ({ pkgs, ... }: {
           environment.systemPackages = [
-            pkgs.niri-unstable
+            pkgs.hyprland
             pkgs.bitwarden-desktop
             pkgs.bitwarden-cli
             pkgs.yt-dlp
@@ -187,16 +190,15 @@
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.sharedModules = [
             nixvim.homeModules.default
-            niri.homeModules.niri
             hyprland.homeManagerModules.default
             caelestia-shell.homeManagerModules.default
+            dms.homeModules.default
             vicinae.homeManagerModules.default
             { stylix.enableReleaseChecks = false; }
           ];
         }
         ({ pkgs, ... }: {
           nixpkgs.overlays = [
-            niri.overlays.niri
             hyprland.overlays.hyprland-packages
             (self: super: {
               brave = super.writeShellScriptBin "brave" ''
@@ -218,11 +220,10 @@
         })
         ({ pkgs, ... }: {
           environment.systemPackages = [
-            pkgs.niri-unstable
-            pkgs.xwayland-satellite-unstable
             pkgs.bitwarden-desktop
             pkgs.bitwarden-cli
             pkgs.hyprland
+            pkgs.transmission_4-gtk
             pkgs.yt-dlp
           ];
         })

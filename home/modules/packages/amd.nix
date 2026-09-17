@@ -7,7 +7,6 @@
     imv
     mpv
     fastfetch
-    firefox-bin
     chromium
     ghostty
     quickshell
@@ -31,6 +30,7 @@
     nautilus
     jq
     krita
+    nomacs
     swaybg
     cliphist
     wl-clip-persist

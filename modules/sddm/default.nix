@@ -46,9 +46,6 @@ in {
       };
     };
     defaultSession = "hyprland-uwsm";
-    sessionPackages = [
-      pkgs.niri-unstable
-    ];
   };
 
   services.xserver.enable = true;
@@ -57,7 +54,6 @@ in {
 
   environment.systemPackages = [
     sddm-astronaut
-    pkgs.niri-unstable
   ];
 
   systemd.services.display-manager.environment = {

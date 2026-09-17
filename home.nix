@@ -4,9 +4,9 @@
   imports = [
     inputs.spicetify-nix.homeManagerModules.default
     ./home/modules/nixvim
-    ./home/modules/niri
     ./home/modules/hyprland
     ./home/modules/caelestia
+    ./home/modules/dms
     ./home/modules/ghostty
     ./home/modules/alacritty
     ./home/modules/spicetify
@@ -38,8 +38,6 @@
     EDITOR = "nvim";
     DEFAULT_BROWSER = "${pkgs.firefox-bin}/bin/firefox";
   };
-
-  programs.niri.package = pkgs.niri-unstable;
 
   programs.btop = {
     enable = true;

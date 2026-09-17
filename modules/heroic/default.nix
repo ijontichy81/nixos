@@ -9,11 +9,7 @@
 
   programs.gamemode = {
     enable = true;
-    settings = {
-      general = {
-        start = "caelestia shell idleInhibitor enable";
-        end = "caelestia shell idleInhibitor disable";
-      };
-    };
+    # Note: caelestia idle-inhibit hooks removed with the shell;
+    # DMS handles idle/lock itself. Re-add hooks here if needed.
   };
 }

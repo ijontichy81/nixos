@@ -11,6 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     clinfo
+    amdgpu_top
   ];
 
   systemd.tmpfiles.rules =

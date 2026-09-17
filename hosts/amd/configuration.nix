@@ -21,7 +21,7 @@
   services.tailscale.enable = true;
 
   # SSH for pulling files to / managing the box from phone (Termux)
-  services.openssh.enable = true;
+  services.openssh.enable = false;
 
   services.greetd.enable = lib.mkForce false;
 
@@ -76,6 +76,7 @@
     slurp
     grim
     realesrgan-ncnn-vulkan
+    testdisk
   ];
 
   systemd.packages = [ pkgs.lact ];

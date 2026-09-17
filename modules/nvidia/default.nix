@@ -30,29 +30,4 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NVD_BACKEND = "direct";
   };
-
-  environment.etc."nvidia/nvidia-application-profiles-rc.d/50-niri-vram-fix.json".text = ''
-    {
-      "rules": [
-        {
-          "pattern": {
-            "feature": "procname",
-            "matches": "niri"
-          },
-          "profile": "Limit Free Buffer Pool On Wayland Compositors"
-        }
-      ],
-      "profiles": [
-        {
-          "name": "Limit Free Buffer Pool On Wayland Compositors",
-          "settings": [
-            {
-              "key": "GLVidHeapReuseRatio",
-              "value": 0
-            }
-          ]
-        }
-      ]
-    }
-  '';
 }

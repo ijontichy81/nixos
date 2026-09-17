@@ -12,16 +12,16 @@
   nix.settings = {
     substituters = [
       "https://cache.nixos.org"
-      "https://niri.cachix.org"
       "https://vicinae.cachix.org"
       "https://hyprland.cachix.org"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
+    max-jobs = "auto";
+    cores = 0;
   };
 
   # Bootloader.
@@ -35,6 +35,13 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.networkmanager.enable = true;
+  # Split DNS via systemd-resolved: Tailscale then only claims tailnet
+  # domains, while NetworkManager-pushed ISP DNS keeps resolving the
+  # internet even when tailscaled is down or restarting. Without this,
+  # /etc/resolv.conf points solely at 100.100.100.100 and any tailscaled
+  # hiccup kills DNS for everything except Firefox (DoH).
+  networking.networkmanager.dns = "systemd-resolved";
+  services.resolved.enable = true;
   networking.firewall.allowedTCPPortRanges = [
     { from = 5000; to = 5050; }
   ];
@@ -68,7 +75,6 @@
     noto-fonts-color-emoji
     material-symbols
     breeze-hacked-cursor-theme
-    google-fonts
   ];
 
   # Set font config for emoji
@@ -90,8 +96,6 @@
     extraGroups = [ "networkmanager" "wheel" "video" "audio" "docker" ];
     shell = pkgs.zsh;
     homeMode = "750";
-    packages = with pkgs; [
-    ];
   };
 
   # Fix home directory permissions on boot
@@ -145,7 +149,7 @@
 
   # KVM virtualization for winboat
   virtualisation.libvirtd.enable = true;
-  boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
 
   services.udisks2.enable = true;
 
@@ -168,8 +172,10 @@
     jq
     inotify-tools
     curl
-    python313
-    python313Packages.adblock
+    (python313.withPackages (ps: with ps; [
+      adblock
+      opencv4
+    ]))
     brave
     git
     cifs-utils
@@ -216,7 +222,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --cmd niri";
+        command = "${pkgs.tuigreet}/bin/tuigreet --cmd \"${pkgs.uwsm}/bin/uwsm app -- Hyprland\"";
         user = "marco";
       };
     };
@@ -235,9 +241,7 @@
   };
 
   # Limit systemd journal size
-  services.journald.extraConfig = "SystemMaxUse=500M";
-
-  environment.pathsToLink = [ "/bin" ];
+  services.journald.settings.Journal.SystemMaxUse = "500M";
 
   xdg.portal = {
     enable = true;

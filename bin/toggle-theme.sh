@@ -111,7 +111,10 @@ else
     rm -f "$IS_LIGHT_FILE"
 fi
 
-caelestia scheme set -m "$MODE" </dev/null &>/dev/null &
+# caelestia removed: sync the DMS light/dark mode here once its settings
+# key is confirmed, e.g.:
+#   dms ipc call settings set <key> "$MODE" </dev/null &>/dev/null &
+# (DMS also re-themes dynamically from the wallpaper on its own.)
 
 for dir in ~/.config/gtk-3.0 ~/.config/gtk-4.0; do
     ini="$dir/settings.ini"

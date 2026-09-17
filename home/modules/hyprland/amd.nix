@@ -412,7 +412,7 @@ in {
         {
           _args = [
             (lib.generators.mkLuaInline ''"CTRL + SHIFT + S"'')
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"caelestia shell nexus open\")")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"dms ipc call settings toggle\")")
           ];
         }
         {
@@ -432,7 +432,6 @@ in {
               hl.exec_cmd("sh -c 'wl-paste --type text --watch cliphist store'")
               hl.exec_cmd("sh -c 'wl-paste --type image --watch cliphist store'")
               hl.exec_cmd("ghostty")
-              hl.exec_cmd("xwayland-satellite")
               hl.exec_cmd("spotify")
             end
           '')

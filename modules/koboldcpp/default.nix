@@ -64,7 +64,13 @@ let
         esac
       fi
 
-      if grep -qi "taesd" "$logfile" 2>/dev/null; then
+      # Only report TAESD when it's actually in use: explicit --sdvaeauto flag
+      # or a non-empty taesd_path in the log. (The old `grep -qi taesd` matched
+      # even the empty `taesd_path:` line, falsely reporting TAESD while the
+      # baked-in VAE was active.)
+      if echo "$args_line" | grep -q "sdvaeauto=True"; then
+        vae_status="TAESD (--sdvaeauto)"
+      elif grep -qiE "taesd_path:[[:space:]]+[^[:space:]]" "$logfile" 2>/dev/null; then
         vae_status="TAESD (--sdvaeauto)"
       fi
       break
@@ -79,9 +85,9 @@ let
     exit "$ec"
   '';
 
-  commonFlags = "--usevulkan --sdclipgpu --sdflashattention --sdoffloadcpu --sdconvdirect vaeonly --sdtiledvae 1024 --sdvramlimit 5500 --sdlora /home/marco/models/sd/loras/ --sdthreads 6 --sdupscaler /home/marco/models/sd/remacri.safetensors --sdclampedsoft 2048 --debugmode --nomodel";
+  commonFlags = "--usevulkan --sdoffloadcpu --sdtiledvae 1024 --sdvramlimit 5000 --sdthreads 6 --sdupscaler /home/marco/models/sd/remacri.safetensors --debugmode --nomodel --adminpassword pass";
 
-  mkKoboldService = name: svcName: model: port: {
+  mkKoboldService = name: svcName: model: port: extraFlags: {
     description = "KoboldCPP AI server with Vulkan GPU support (${name})";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" "${svcName}-sleepguard.service" ];
@@ -91,7 +97,7 @@ let
       Type = "exec";
       User = "marco";
       Group = "vip";
-      ExecStart = "${status-script} --sdmodel ${model} ${commonFlags} --host 0.0.0.0 --port ${toString port}";
+      ExecStart = "${status-script} --sdmodel ${model} ${extraFlags} ${commonFlags} --host 0.0.0.0 --port ${toString port}";
       Restart = "on-failure";
       RestartSec = 5;
     };
@@ -127,9 +133,9 @@ in
 
   systemd.services =
     {
-      koboldcpp = mkKoboldService "lustify" "koboldcpp" "/home/marco/models/sd/gemCollection_opal.safetensors" 5001;
-      koboldcpp-gem = mkKoboldService "gem" "koboldcpp-gem" "/home/marco/models/sd/gemCollection_proteus.safetensors" 5002;
+      koboldcpp = mkKoboldService "gem_proteus" "koboldcpp" "/home/marco/models/sd/novaCartoonXL_v60.safetensors" 5001 "--sdlora /home/marco/models/sd/loras/ ";
+      kobold_ani = mkKoboldService "kindmous" "kobold_ani" "/home/marco/models/anima/fnMomentAnimaTurbo_v40NoTurbo.safetensors" 5002 "--sdlora /home/marco/models/anima/lora/ --sdvae /home/marco/models/anima/qwen_image_vae.safetensors --sdclip1 /home/marco/models/anima/qwen_3_06b_base.safetensors";
     }
     // mkSleepGuard "koboldcpp"
-    // mkSleepGuard "koboldcpp-gem";
+    // mkSleepGuard "kobold_ani";
 }

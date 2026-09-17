@@ -7,7 +7,9 @@
   });
 in {
   programs.caelestia = {
-    enable = true;
+    # Disabled: replaced by DankMaterialShell (home/modules/dms).
+    # Flip back to true (and disable dms) to roll back.
+    enable = false;
     package = patchedShell;
     systemd = {
       enable = true;

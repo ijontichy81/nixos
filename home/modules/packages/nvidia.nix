@@ -6,7 +6,6 @@
     imv
     mpv
     fastfetch
-    firefox-bin
     chromium
     ghostty
     quickshell
